@@ -2,18 +2,23 @@
 \usepackage{babel} 
 \usepackage[T1]{fontenc} 
 \usepackage[utf8]{inputenc} 
+\usepackage{lmodern}
+%\usepackage{amsthm}
+\usepackage{stmaryrd}
 \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
 \usepackage{geometry}
 \usepackage{graphicx}
 \geometry{hmargin=2.5cm,vmargin=2cm}
 
-\newtheorem{ax}{Axiome}[part]
-\newtheorem{lemma}{Lemme}[part]
-\newtheorem{proposition}{Proposition}[part]
-\newtheorem{theorem}{Proposition}[part]
-\newtheorem{proof}{Démonstration}[part]
-\newtheorem{definition}{Définition}[part]
-\newtheorem{exemple}{Éxemple}[part]
+\newtheorem{ax}{Axiome}[section]
+\newtheorem{lemma}{Lemme}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}{Proposition}[section]
+\newtheorem{proof}{Démonstration}[section]
+\newtheorem{definition}{Définition}[section]
+\newtheorem{exemple}{Éxemple}[section]
 
 
 \title{TIPE : Origami et constructibilité}
@@ -27,15 +32,171 @@
 \chapter{Introduction à la constructibilité : règle et compas}
 	
 	\section{Définitions}
+		Il est nécessaire de commencer notre étude en posant quelques définitions et résultats élémentaires qui nous seront utiles par la suite.
 		\subsection{Outils d'algèbre}
-			\begin{definition}[Corps]
+			
+			\begin{definition}[Corps] 
+				Un corps est une structure algébrique \( (\mathbb{K} , + , \times ) \) telle que :
+				\begin{enumerate}
+					\item Les lois \( + \) et \( \times \) sont des applications \( \mathbb{K}^2 \longrightarrow \mathbb{K} \)
+					\item \((\mathbb{K} , +)\) soit un groupe commutatif, c'est-à-dire :
+						\[ 
+							\left\{ 
+							\begin{array}{lll}
+								\exists \, 0_{\mathbb{K}} \in \mathbb{K} , \forall x \in \mathbb{K}, x + 0_{\mathbb{K}} = 0_{\mathbb{K}} + x = x
+								\\
+								\forall x \in \mathbb{K} , \exists k \in \mathbb{K} , x + k = k + x = 0_{\mathbb{K}} \mbox{  et on notera } -x = k
+								\\
+								\forall (x,y) \in \mathbb{K}^{2},
+											x + y = y + x
+										
+								\\
+								\forall (x, y, z) \in \mathbb{K}^3, (x + y) + z = x + (y + z)
+									 
+							\end{array}
+							\right.
+						\]
+					\item \((\mathbb{K}\setminus\{0\}, \times) \) est un groupe commutatif :
+						\[ 
+								\left\{ 
+								\begin{array}{lll}
+									\exists \, 1_{\mathbb{K}} \in \mathbb{K} , \forall x \in \mathbb{K}, x \times 1_{\mathbb{K}} = 1_{\mathbb{K}} \times x = x
+									\\
+									\forall x \in \mathbb{K} , \exists k \in \mathbb{K} , x \times k = k \times x = 1_{\mathbb{K}} \mbox{  et on notera } x^{-1} = k
+									\\
+									\forall (x,y) \in \mathbb{K}^{2},
+												x \times y = y \times x
+									\\
+									\forall (x, y, z) \in \mathbb{K}^3, (x \times y) \times z = x \times (y + z)
+										 
+								\end{array}
+								\right.
+							\]
+					\item La loi \( + \) est distributive sur la loi \( \times \) :
+						\[
+						\forall (x, y, z) \in \mathbb{K}^3, x \times (y + z) = (y + z) \times x = xy + xz
+						\]
+				\end{enumerate}
+			
 			\end{definition}
+			
+			
 			\begin{definition}[Espace Vectoriel]
+				Un \(\mathbb{K}\)-espace vectoriel \(E\)  est une structure algébrique \( (E, + , \cdot)\) telle que
+				\begin{enumerate}
+					\item \( (E, +) \) est un groupe commutatif
+					\item La loi externe \( \cdot \) est une application \( \mathbb{K} \times E \longrightarrow E \) qui vérifie les axiomes suivants :
+						\begin{enumerate}
+							\item Pseudo-associativité :
+								\(
+								\forall (\lambda, \mu, x) \in \mathbb{K}^2 \times E, \mu(\lambda x) = (\mu \lambda) x
+								\)
+							\item Pseudo-distributivité :
+								\(
+								\left\{
+									\begin{array}{ll}
+										\forall (\lambda, \mu, x) \in \mathbb{K}^2 \times E (\lambda + \mu)x = \lambda x + \mu x \\
+										\forall (\lambda, x, y) \in \mathbb{K} \times E^2 \lambda(x + y) = \lambda x + \lambda y
+									\end{array}
+								\right.
+								\)
+							\item Opérateur neutre :
+								\(
+								\forall x \in E, 1_\mathbb{K} \cdot x = x
+								\)
+						\end{enumerate}
+				\end{enumerate}
+				
 			\end{definition}
-			\begin{definition}[Extension de corp]
+			
+			
+			\begin{definition}[Extension de corps]
+			
+				Si \( \mathbb{K} \) et \( \mathbb{L} \) sont deux corps tels que \(\mathbb{K} \subset  \mathbb{L} \), alors
+				\(\mathbb{L}\) est un \(\mathbb{K}\)-espace vectoriel. Dès lors, \(\mathbb{L}\) est appelée une \emph{extension} de \(\mathbb{K}\).
+			
+				\begin{proof}
+					La structure d'espace vectoriel de \(\mathbb{L}\) s'hérite de sa structure de corps.
+					\begin{enumerate}
+						\item \(\mathbb{L}\) est un corps donc, en particulier, \((\mathbb{L}, +)\) est un groupe commutatif.
+						\item Tout élément de \(\mathbb{K}\) étant en particulier un élément de \(\mathbb{L}\), il suffit de définir la loi
+						externe \(\cdot\) à l'aide de la loi \( \times \) de \(\mathbb{L}\) pour que tous les axiomes de la loi externe d'un espace vectoriel s'héritent directement des propriétés de la loi \( \times \) d'un corps:
+							\[
+							\forall (x, y) \in \mathbb{K} \times \mathbb{L}, x \cdot y = x \times y
+							\]
+					\end{enumerate}
+				\end{proof}
 			\end{definition}
+			
+			
+			
+			
 			\begin{definition}[Degré d'une extension]
+				Soit \(\mathbb{L}\) une extension d'un corps \(\mathbb{K}\). Si la dimension de \(\mathbb{L}\) en tant que \(\mathbb{K}\)-espace vectoriel est finie, on l'appelle le \emph{degré} de l'extension, notée :
+				\[
+				[\mathbb{L}:\mathbb{K}] = \dim_\mathbb{K}\mathbb{L}
+				\]
+				S'il est égal à 2, on parlera d'\emph{extension quadratique}.
 			\end{definition}
+			
+			\begin{proposition}[Relation de Chasles sur le degré]
+				Soit \(K\), \(L\), \(M\) trois corps tels que \( K \subset L \subset M\), et les extensions sont de degré fini. On a alors :
+				\[
+				[M:K] = [M:L]{\times} [L:K]
+				\]
+				\begin{proof}
+					On pose tout d'abord :
+					\[
+					\left\{
+						\begin{array}{ll}
+							p = [M:L] \\
+							n = [L:K]
+						\end{array}
+					\right.
+					\]
+					
+					
+					Ensuite, exhibons une base de \(M\) en tant que \(K\)-espace vectoriel afin d'obtenir sa dimension.
+					Soit \((l_i)_{1 \leq i \leq n} \in L^n\) une base de \(L\) en tant que \(K\)-ev.
+					Soit \((m_j)_{1 \leq j \leq p} \in L^n\) une base de \(M\) en tant que \(L\)-ev.
+					
+					Montrons que \((l_i m_j)_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket}\) est une base de M en tant que \(K\)-espace vectoriel.
+					\begin{enumerate}
+					\item \emph{Caractère générateur} : soit \(x \in M\), alors 
+						\[
+						\exists (\lambda_1, \dots, \lambda_p) \in L^p, \sum_{j  = 1}^{p} \lambda_j m_j = x
+						\]
+						Or \(\forall i \in \llbracket 1, p \rrbracket, \lambda_i \in L\), donc :
+						\[ 
+						\exists (\mu_{i, 1}, \dots, \mu_{i, n}) \in K^n, \sum_{j  = 1}^{n} \mu_{i, j} l_j = \lambda_i 
+						\]
+						Puis :
+						\begin{align*}
+						x 	&= \sum_{i  = 1}^{p} \lambda_i m_i = x \\
+							&= \sum_{i  = 1}^{p} \left(\sum_{j  = 1}^{n} \mu_{i, j} l_j\right) m_i \\
+							&= \sum_{(i, j) \in \llbracket 1, p \rrbracket \times \llbracket 1, n \rrbracket}\mu_{i, j} (l_j m_i)
+						\end{align*}
+					\item \emph{Caractère libre} : soit \((\lambda_{i, j})_{ (i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket} \in K^{np}\) telle que :
+							\[
+							\sum_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket} \lambda_{i, j} (l_j m_i) = O
+							\]
+						Soit encore :
+							\[
+							\sum_{i=1}^{p} \underbrace{\left( \sum_{j = 1}^{n} \lambda_{i, j} l_j \right)}_{\in L}m_i = 0
+							\]
+						Donc, par liberté de \((m_1, \dots, m_p)\), on a :
+							\[
+							\forall i \in \llbracket 1, p \rrbracket, \sum_{j = 1}^{n} \underbrace{\lambda_{i, j}}_{\in K} l_j = 0
+							\]
+						Donc, par liberté de \((l_1, \dots, l_n)\), on obtient:
+							\[
+							\forall i \in \llbracket 1, p \rrbracket, \forall j \in \llbracket 1, n \rrbracket, \lambda_{i, j} = 0
+							\]
+					\item On a ainsi montré que \((l_i m_j)_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket}\) est une base du \(K\)-espace vectoriel \(M\). Or, cette base contient \(n\times p\) vecteurs, donc l'extension M est bien de degré \(n\times p\) par rapport à \(K\), ce qui achève la preuve. \(\square\)
+					
+					\end{enumerate}
+				\end{proof}
+			\end{proposition}
 			
 		\subsection{Nombres algébriques}
 			\begin{definition}[Nombre algébrique]
