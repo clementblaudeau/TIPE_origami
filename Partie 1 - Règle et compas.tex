@@ -3,7 +3,7 @@
 \usepackage[T1]{fontenc} 
 \usepackage[utf8]{inputenc} 
 \usepackage{lmodern}
-%\usepackage{amsthm}
+\usepackage{amsthm}
 \usepackage{stmaryrd}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -16,7 +16,6 @@
 \newtheorem{lemma}{Lemme}[section]
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{theorem}{Proposition}[section]
-\newtheorem{proof}{Démonstration}[section]
 \newtheorem{definition}{Définition}[section]
 \newtheorem{exemple}{Éxemple}[section]
 
@@ -24,6 +23,7 @@
 \title{TIPE : Origami et constructibilité}
 
 \begin{document}
+\newtheorem*{preuve}{Démonstration}
 \maketitle
 \renewcommand{\contentsname}{Sommaire}
 \tableofcontents{}
@@ -60,14 +60,14 @@
 						\[ 
 								\left\{ 
 								\begin{array}{lll}
-									\exists \, 1_{\mathbb{K}} \in \mathbb{K} , \forall x \in \mathbb{K}, x \times 1_{\mathbb{K}} = 1_{\mathbb{K}} \times x = x
+									\exists \, 1_{\mathbb{K}} \in \mathbb{K}\setminus\{0\} , \forall x \in \mathbb{K}\setminus\{0\}, x \times 1_{\mathbb{K}} = 1_{\mathbb{K}} \times x = x
 									\\
-									\forall x \in \mathbb{K} , \exists k \in \mathbb{K} , x \times k = k \times x = 1_{\mathbb{K}} \mbox{  et on notera } x^{-1} = k
+									\forall x \in \mathbb{K}\setminus\{0\} , \exists k \in \mathbb{K}\setminus\{0\} , x \times k = k \times x = 1_{\mathbb{K}} \mbox{  et on notera } x^{-1} = k
 									\\
-									\forall (x,y) \in \mathbb{K}^{2},
+									\forall (x,y) \in (\mathbb{K}\setminus\{0\})^{2},
 												x \times y = y \times x
 									\\
-									\forall (x, y, z) \in \mathbb{K}^3, (x \times y) \times z = x \times (y + z)
+									\forall (x, y, z) \in (\mathbb{K}\setminus\{0\})^3, (x \times y) \times z = x \times (y + z)
 										 
 								\end{array}
 								\right.
@@ -78,6 +78,130 @@
 						\]
 				\end{enumerate}
 			
+			\end{definition}
+			
+			\begin{definition}[Corps engendré]
+				Soit \(\mathbb{E}\) et \(\mathbb{F}\) deux corps, tel que \(\mathbb{E} \subset \mathbb{F}\), et soit \(x \in \mathbb{F} \). Le corps engendré par \(x\), noté \(\mathbb{E}(x)\), est le plus petit corps (au sens de l'inclusion) qui contient x et \(\mathbb{E}\).
+				
+				\begin{preuve}
+					Soit \(x\in \mathbb{F} \), montrons que \(\mathbb{E}(x)\) est bien défini. Posons 
+					\[{}
+						A = \left\{\mathbb{K} \in P(\mathbb{F}) /
+						\left\{ 
+						\begin{array}{lll}
+							\mathbb{K} \mbox{ est un corps} \\
+							\mathbb{E} \subset \mathbb{K}\\
+							x \in \mathbb{K}
+						\end{array}
+						\right.
+						\right\}
+					\]
+					et
+					\[{}
+						X = \bigcap_{\mathbb{K} \in A} \mathbb{K}
+					\]
+					Montrons que X est un corps, et qu'il convient pour \(\mathbb{E}(x)\){}
+					
+		\begin{enumerate}
+			\item{} Il suffit de montrer qu'une intersection quelconque de corps est un corps.
+			\begin{enumerate}
+				\item Montrons que \(X,+)\) est un groupe commutatif
+					\begin{enumerate}
+							%Axiomes du groupe
+							\item 
+								\( \forall\; \mathbb{K} \in A , 0 \in \mathbb{K} \Rightarrow 0 \in X \){}
+							\item 
+								Soit \(x \in X \). On a : \(\forall \mathbb{K} \in A, x\in \mathbb{K} \Rightarrow -x \in \mathbb{K} \). Donc, \(-x \in X\){}
+							\item 
+								Soit \((x,y) \in X^{2} \) on a, 
+								\[{}
+								\forall \; \mathbb{K} \in A , 
+								\left(
+								\left\{
+								\begin{array}{ll}
+									x\in \mathbb{K}\\
+									y\in \mathbb{K}
+								\end{array}
+								\right. \Rightarrow x+y = y+x \in \mathbb{K} \right){}
+								\]
+								Donc \(x + y = y+x \in X \){}
+							\item 
+								Soit \((x,y,z) \in X^{3} \) on a, 
+								\[{}
+								\forall \; \mathbb{K} \in A , 
+								\left(
+								\left\{
+								\begin{array}{lll}
+									x\in \mathbb{K}\\
+									y\in \mathbb{K}\\
+									z\in \mathbb{K}
+								\end{array}
+								\right. \Rightarrow (x+y)+z = x+(y+z) \in \mathbb{K} \right){}
+								\]
+								Donc \((x + y)+z = x+(y+z) \in X \){}
+					\end{enumerate}
+				\item Montrons que \((X\setminus\{0\},\times\)) est un groupe commutatif
+					\begin{enumerate}
+							%Axiomes de l'anneau
+							\item 
+								\( \forall\; \mathbb{K} \in A , 1 \in \mathbb{K}\setminus\{0\} \Rightarrow 1 \in X\setminus\{0\} \){}
+							\item 
+								Soit \(x \in X\setminus\{0\} \). On a : \(\forall \mathbb{K} \in A, x\in \mathbb{K}\setminus\{0\} \Rightarrow x^{-1} \in \mathbb{K}\setminus\{0\} \). Donc, \(x^{-1} \in X\setminus\{0\}\){}
+							\item 
+								Soit \((x,y) \in (X\setminus\{0\})^{2} \) on a, 
+								\[{}
+								\forall \; \mathbb{K} \in A , 
+								\left(
+								\left\{
+								\begin{array}{ll}
+									x\in \mathbb{K}\setminus\{0\}\\
+									y\in \mathbb{K}\setminus\{0\}
+								\end{array}
+								\right. \Rightarrow x\times y = y\times x \in \mathbb{K}\setminus\{0\} \right){}
+								\]
+								Donc \(x\times y = y\times x \in X\setminus\{0\} \){}
+							\item 
+								Soit \((x,y,z) \in (X\setminus\{0\})^{3} \) on a, 
+								\[{}
+								\forall \; \mathbb{K} \in A , 
+								\left(
+								\left\{
+								\begin{array}{lll}
+									x\in \mathbb{K}\setminus\{0\}\\
+									y\in \mathbb{K}\setminus\{0\}\\
+									z\in \mathbb{K}\setminus\{0\}
+								\end{array}
+								\right. \Rightarrow (x+y)+z = x+(y+z) \in \mathbb{K}\setminus\{0\} \right){}
+								\]
+								Donc \((x + y)+z = x+(y+z) \in X\setminus\{0\} \)
+					\end{enumerate}
+				\item Montrons la distributivité de \(+\) sur \(\times\) : \\
+					Soit \((x,y,z) \in X^{3} \) on a, 
+									\[{}
+									\forall \; \mathbb{K} \in A , 
+									\left(
+									\left\{
+									\begin{array}{lll}
+										x\in \mathbb{K}\\
+										y\in \mathbb{K}\\
+										z\in \mathbb{K}
+									\end{array}
+									\right. \Rightarrow x \times (y + z) = (y + z) \times x = xy + xz \in \mathbb{K}\right){}
+									\]
+									Donc \(x \times (y + z) = (y + z) \times x = xy + xz \in X \)
+							
+					\end{enumerate}
+				
+				\item Soit \(X'\) un corps contenant x et \(\mathbb{E}\). Par construction, 
+				\(X' \in A \), donc 
+				\(X = 
+				X'\cap 
+				\left(\bigcap_{\mathbb{K}\in A\setminus{X'} \mathbb{K} }\right) \Rightarrow X \subset X '\).{}
+				Donc X est bien minimal, ce qui achève la preuve. \(\square\) 
+				
+				\end{enumerate}
+			\end{preuve}
+				
 			\end{definition}
 			
 			
@@ -115,7 +239,7 @@
 				Si \( \mathbb{K} \) et \( \mathbb{L} \) sont deux corps tels que \(\mathbb{K} \subset  \mathbb{L} \), alors
 				\(\mathbb{L}\) est un \(\mathbb{K}\)-espace vectoriel. Dès lors, \(\mathbb{L}\) est appelée une \emph{extension} de \(\mathbb{K}\).
 			
-				\begin{proof}
+				\begin{preuve}
 					La structure d'espace vectoriel de \(\mathbb{L}\) s'hérite de sa structure de corps.
 					\begin{enumerate}
 						\item \(\mathbb{L}\) est un corps donc, en particulier, \((\mathbb{L}, +)\) est un groupe commutatif.
@@ -125,7 +249,7 @@
 							\forall (x, y) \in \mathbb{K} \times \mathbb{L}, x \cdot y = x \times y
 							\]
 					\end{enumerate}
-				\end{proof}
+				\end{preuve}
 			\end{definition}
 			
 			
@@ -144,7 +268,7 @@
 				\[
 				[M:K] = [M:L]{\times} [L:K]
 				\]
-				\begin{proof}
+				\begin{preuve}
 					On pose tout d'abord :
 					\[
 					\left\{
@@ -171,11 +295,11 @@
 						\exists (\mu_{i, 1}, \dots, \mu_{i, n}) \in K^n, \sum_{j  = 1}^{n} \mu_{i, j} l_j = \lambda_i 
 						\]
 						Puis :
-						\begin{align*}
-						x 	&= \sum_{i  = 1}^{p} \lambda_i m_i = x \\
-							&= \sum_{i  = 1}^{p} \left(\sum_{j  = 1}^{n} \mu_{i, j} l_j\right) m_i \\
-							&= \sum_{(i, j) \in \llbracket 1, p \rrbracket \times \llbracket 1, n \rrbracket}\mu_{i, j} (l_j m_i)
-						\end{align*}
+						\[
+						x 	= \sum_{i  = 1}^{p} \lambda_i m_i  
+							= \sum_{i  = 1}^{p} \left(\sum_{j  = 1}^{n} \mu_{i, j} l_j\right) m_i 
+							= \sum_{(i, j) \in \llbracket 1, p \rrbracket \times \llbracket 1, n \rrbracket}\mu_{i, j} (l_j m_i)
+						\]
 					\item \emph{Caractère libre} : soit \((\lambda_{i, j})_{ (i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket} \in K^{np}\) telle que :
 							\[
 							\sum_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket} \lambda_{i, j} (l_j m_i) = O
@@ -195,16 +319,67 @@
 					\item On a ainsi montré que \((l_i m_j)_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket}\) est une base du \(K\)-espace vectoriel \(M\). Or, cette base contient \(n\times p\) vecteurs, donc l'extension M est bien de degré \(n\times p\) par rapport à \(K\), ce qui achève la preuve. \(\square\)
 					
 					\end{enumerate}
-				\end{proof}
+				\end{preuve}
 			\end{proposition}
 			
 		\subsection{Nombres algébriques}
 			\begin{definition}[Nombre algébrique]
+				Soit \(E\), \(F\), deux corps, \(j : E \longrightarrow F\) une extension de corps, et \(x \in F\). On dit que \(x\) est \emph{algébrique} sur E si : 
+				\[
+					\exists P \in E[X]_{\backslash {0}} , P(x) = 0
+				\]
+				Sinon, on dit que x est \emph{transcendant}
 			\end{definition}
-			\begin{definition}[Degré et polynôme minimal]
+			\begin{definition}[Degré algébrique et polynôme minimal]
+				Soit \(x \in F \) algébrique sur \(E\). Alors il existe un unique polynôme unitaire de degré minimal, non nul, dont x soit racine. On l'appelle le \emph{polynôme minimal}, et son degré est le \emph{degré algébrique} de \(x\).{}
+				
+				\begin{preuve}
+					Soit \(x \in F\), algébrique sur \(E\). 
+					\begin{enumerate}
+						\item \emph{Existence}
+							Par définition
+							\[\exists P_{0} \in E[X] {\backslash \left\{0_{E[X]}\right\} }, P_{0}(x) = 0 \]
+							Posons \(A = 
+							\left\{ n \in \mathbb{N} / \exists Q \in E[X] {\backslash \left\{0\right\} }, 
+								\left\{
+								\begin{array}{ll}
+									Q(x) = 0 \\
+									deg(Q) = n
+								\end{array}
+								\right.
+							\right\}\). Par ce qui précède, \(deg(P_{0}) \in A \), donc \(A \neq \emptyset \). Ainsi on peut prendre \(P \in A\) de degré minimal. Quitte à considérer le coefficient dominant de P, noté p, et \(\frac{P}{p} \in A\), on peut supposer P unitaire. Par construction, P est bien unitaire de degré minimal parmis les polynomes dont x est racine.
+						\item \emph{Unicité}
+							Soit \(P,Q \in E[X], P(x) = Q(x) = 0 \), unitaires de degré minimal. Alors par unicité du minimum, \(deg(P) = deg(Q) \), et leurs coefficients dominants sont égaux à \(1\). Ainsi le polynôme \( (P-Q)(X) \) est de degré strictement inferieur à \(deg(P)\). Or 
+							\[ (P-Q)(x) = P(x) - Q(x) = 0 - 0 = 0\]
+							donc si \(P - Q\) est non nul, il contredit la minimalité de P et de Q. Ainsi \(P-Q = 0_{E[X]} \Rightarrow P = Q \), d'où l'unicité. \(\square\)
+						
+					\end{enumerate}
+				\end{preuve}
 			\end{definition}
+			
+			\begin{proposition}
+				Soit E un corps, L une extension finie de E. Si \(x \in L\), alors x est algébrique sur E
+				
+				\begin{preuve}
+					Posons \(n = [L:E] \in \mathbb{N} \). Soit \(x \in L \).{}
+					\begin{enumerate}
+						\item Si \(x \in \left\{ 0, 1\right\} \), alors directement x est algébrique sur E (\(P = X \) ou \(P = X - 1 \) conviennent)
+						\item Sinon, on a que : \(\forall k \in \mathbb{N}, x^{k+1} \neq x^{k} \), donc la famille : 
+						\[{}
+						\left( 1 , x , x^{2} , \dots , x^{n} \right)
+						\]
+						a exactement \(n+1\) éléments. Or L est de dimension \(n\), donc la famille est liée, c'est à dire : 
+						\[{}
+							\exists (\lambda_{0},\dots,\lambda_{n}) \in (E^{n})\backslash {(0,\dots,0)}, \sum_{i = 0}^{n} \lambda_{i}x^{i} = 0
+						\]
+						On pose alors : \(P = \sum_{i = 0}^{n} \lambda_{i}X^{i} \) qui n'est pas le polynome nul, car \( (\lambda_{0},\dots,\lambda_{n}) \) n'est pas la famille nulle. Et on a \(P(x) = 0 \), donc x est algébrique  \(\square\)
+					\end{enumerate}
+				\end{preuve}
+			\end{proposition}
+			
 			\begin{proposition}
 			\end{proposition}
+			
 			\begin{proposition}
 			\end{proposition}
 		
@@ -213,9 +388,9 @@
 			\begin{theorem}
 				
 			\end{theorem}
-			\begin{proof}
+			\begin{preuve}
 				
-			\end{proof}
+			\end{preuve}
 		
 		\subsection{Exemples célèbres}
 
