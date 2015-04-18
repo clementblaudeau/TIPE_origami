@@ -10,20 +10,30 @@
 \usepackage{mathrsfs}
 \usepackage{geometry}
 \usepackage{graphicx}
+\usepackage{boiboites}
 \geometry{hmargin=2.5cm,vmargin=2cm}
 
 \newtheorem{ax}{Axiome}[section]
 \newtheorem{lemma}{Lemme}[section]
-\newtheorem{proposition}{Proposition}[section]
-\newtheorem{theorem}{Proposition}[section]
+%\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}{Théorème}[section]
 \newtheorem{definition}{Définition}[section]
 \newtheorem{exemple}{Éxemple}[section]
+
+% ------
+
+\definecolor{violet}{rgb}{0.5,0,0.5}
+\definecolor{orange}{rgb}{0.9,0.4,0}
+
+\newboxedtheorem[boxcolor=blue,titleboxcolor = blue,titlebackground=blue!20,titlecolor = black]{proposition}{Proposition}{subsection}
+
+% ------
 
 
 \title{TIPE : Origami et constructibilité}
 
 \begin{document}
-\newtheorem*{preuve}{Démonstration}
+%\newtheorem*{proof}{Démonstration}
 \maketitle
 \renewcommand{\contentsname}{Sommaire}
 \tableofcontents{}
@@ -82,125 +92,16 @@
 			
 			\begin{definition}[Corps engendré]
 				Soit \(\mathbb{E}\) et \(\mathbb{F}\) deux corps, tel que \(\mathbb{E} \subset \mathbb{F}\), et soit \(x \in \mathbb{F} \). Le corps engendré par \(x\), noté \(\mathbb{E}(x)\), est le plus petit corps (au sens de l'inclusion) qui contient x et \(\mathbb{E}\).
+			\end{definition}
+			
+			\begin{definition}[Sous anneau engendré par x]
+				Soit \(\mathbb{E}\) et \(\mathbb{F}\) deux corps, tels que \(\mathbb{E}\subset\mathbb{F}\), et \(x\in\mathbb{F}\). Alors on appelle \emph{Sous anneau de F engendré par x} l'ensemble :
+				\[\left\{y\in F / \exists P \in E[X], y = P(x)\right\}\]
+				On le note \(E[x]\).{}
 				
-				\begin{preuve}
-					Soit \(x\in \mathbb{F} \), montrons que \(\mathbb{E}(x)\) est bien défini. Posons 
-					\[{}
-						A = \left\{\mathbb{K} \in P(\mathbb{F}) /
-						\left\{ 
-						\begin{array}{lll}
-							\mathbb{K} \mbox{ est un corps} \\
-							\mathbb{E} \subset \mathbb{K}\\
-							x \in \mathbb{K}
-						\end{array}
-						\right.
-						\right\}
-					\]
-					et
-					\[{}
-						X = \bigcap_{\mathbb{K} \in A} \mathbb{K}
-					\]
-					Montrons que X est un corps, et qu'il convient pour \(\mathbb{E}(x)\){}
-					
-		\begin{enumerate}
-			\item{} Il suffit de montrer qu'une intersection quelconque de corps est un corps.
-			\begin{enumerate}
-				\item Montrons que \(X,+)\) est un groupe commutatif
-					\begin{enumerate}
-							%Axiomes du groupe
-							\item 
-								\( \forall\; \mathbb{K} \in A , 0 \in \mathbb{K} \Rightarrow 0 \in X \){}
-							\item 
-								Soit \(x \in X \). On a : \(\forall \mathbb{K} \in A, x\in \mathbb{K} \Rightarrow -x \in \mathbb{K} \). Donc, \(-x \in X\){}
-							\item 
-								Soit \((x,y) \in X^{2} \) on a, 
-								\[{}
-								\forall \; \mathbb{K} \in A , 
-								\left(
-								\left\{
-								\begin{array}{ll}
-									x\in \mathbb{K}\\
-									y\in \mathbb{K}
-								\end{array}
-								\right. \Rightarrow x+y = y+x \in \mathbb{K} \right){}
-								\]
-								Donc \(x + y = y+x \in X \){}
-							\item 
-								Soit \((x,y,z) \in X^{3} \) on a, 
-								\[{}
-								\forall \; \mathbb{K} \in A , 
-								\left(
-								\left\{
-								\begin{array}{lll}
-									x\in \mathbb{K}\\
-									y\in \mathbb{K}\\
-									z\in \mathbb{K}
-								\end{array}
-								\right. \Rightarrow (x+y)+z = x+(y+z) \in \mathbb{K} \right){}
-								\]
-								Donc \((x + y)+z = x+(y+z) \in X \){}
-					\end{enumerate}
-				\item Montrons que \((X\setminus\{0\},\times\)) est un groupe commutatif
-					\begin{enumerate}
-							%Axiomes de l'anneau
-							\item 
-								\( \forall\; \mathbb{K} \in A , 1 \in \mathbb{K}\setminus\{0\} \Rightarrow 1 \in X\setminus\{0\} \){}
-							\item 
-								Soit \(x \in X\setminus\{0\} \). On a : \(\forall \mathbb{K} \in A, x\in \mathbb{K}\setminus\{0\} \Rightarrow x^{-1} \in \mathbb{K}\setminus\{0\} \). Donc, \(x^{-1} \in X\setminus\{0\}\){}
-							\item 
-								Soit \((x,y) \in (X\setminus\{0\})^{2} \) on a, 
-								\[{}
-								\forall \; \mathbb{K} \in A , 
-								\left(
-								\left\{
-								\begin{array}{ll}
-									x\in \mathbb{K}\setminus\{0\}\\
-									y\in \mathbb{K}\setminus\{0\}
-								\end{array}
-								\right. \Rightarrow x\times y = y\times x \in \mathbb{K}\setminus\{0\} \right){}
-								\]
-								Donc \(x\times y = y\times x \in X\setminus\{0\} \){}
-							\item 
-								Soit \((x,y,z) \in (X\setminus\{0\})^{3} \) on a, 
-								\[{}
-								\forall \; \mathbb{K} \in A , 
-								\left(
-								\left\{
-								\begin{array}{lll}
-									x\in \mathbb{K}\setminus\{0\}\\
-									y\in \mathbb{K}\setminus\{0\}\\
-									z\in \mathbb{K}\setminus\{0\}
-								\end{array}
-								\right. \Rightarrow (x+y)+z = x+(y+z) \in \mathbb{K}\setminus\{0\} \right){}
-								\]
-								Donc \((x + y)+z = x+(y+z) \in X\setminus\{0\} \)
-					\end{enumerate}
-				\item Montrons la distributivité de \(+\) sur \(\times\) : \\
-					Soit \((x,y,z) \in X^{3} \) on a, 
-									\[{}
-									\forall \; \mathbb{K} \in A , 
-									\left(
-									\left\{
-									\begin{array}{lll}
-										x\in \mathbb{K}\\
-										y\in \mathbb{K}\\
-										z\in \mathbb{K}
-									\end{array}
-									\right. \Rightarrow x \times (y + z) = (y + z) \times x = xy + xz \in \mathbb{K}\right){}
-									\]
-									Donc \(x \times (y + z) = (y + z) \times x = xy + xz \in X \)
-							
-					\end{enumerate}
-				
-				\item Soit \(X'\) un corps contenant x et \(\mathbb{E}\). Par construction, 
-				\(X' \in A \), donc 
-				\(X = 
-				X'\cap 
-				\left(\bigcap_{\mathbb{K}\in A\setminus{X'} \mathbb{K} }\right) \Rightarrow X \subset X '\).{}
-				Donc X est bien minimal, ce qui achève la preuve. \(\square\) 
-				
-				\end{enumerate}
-			\end{preuve}
+				\begin{proof}
+					\(E[x]\) est l'image de l'anneau \(E[X]\) par le morphisme d'évaluation \[\varphi_{x} : \; P \mapsto P(x) \] donc c'est un anneau. Par la suite on introduira \(\varphi_{x}\) systématiquement, sans le redéfinir.
+				\end{proof}
 				
 			\end{definition}
 			
@@ -219,8 +120,8 @@
 								\(
 								\left\{
 									\begin{array}{ll}
-										\forall (\lambda, \mu, x) \in \mathbb{K}^2 \times E (\lambda + \mu)x = \lambda x + \mu x \\
-										\forall (\lambda, x, y) \in \mathbb{K} \times E^2 \lambda(x + y) = \lambda x + \lambda y
+										\forall (\lambda, \mu, x) \in \mathbb{K}^2 \times E , (\lambda + \mu)x = \lambda x + \mu x \\
+										\forall (\lambda, x, y) \in \mathbb{K} \times E^2 , \lambda(x + y) = \lambda x + \lambda y
 									\end{array}
 								\right.
 								\)
@@ -239,7 +140,7 @@
 				Si \( \mathbb{K} \) et \( \mathbb{L} \) sont deux corps tels que \(\mathbb{K} \subset  \mathbb{L} \), alors
 				\(\mathbb{L}\) est un \(\mathbb{K}\)-espace vectoriel. Dès lors, \(\mathbb{L}\) est appelée une \emph{extension} de \(\mathbb{K}\).
 			
-				\begin{preuve}
+				\begin{proof}
 					La structure d'espace vectoriel de \(\mathbb{L}\) s'hérite de sa structure de corps.
 					\begin{enumerate}
 						\item \(\mathbb{L}\) est un corps donc, en particulier, \((\mathbb{L}, +)\) est un groupe commutatif.
@@ -249,7 +150,7 @@
 							\forall (x, y) \in \mathbb{K} \times \mathbb{L}, x \cdot y = x \times y
 							\]
 					\end{enumerate}
-				\end{preuve}
+				\end{proof}
 			\end{definition}
 			
 			
@@ -268,7 +169,8 @@
 				\[
 				[M:K] = [M:L]{\times} [L:K]
 				\]
-				\begin{preuve}
+			\end{proposition}
+				\begin{proof}
 					On pose tout d'abord :
 					\[
 					\left\{
@@ -316,85 +218,140 @@
 							\[
 							\forall i \in \llbracket 1, p \rrbracket, \forall j \in \llbracket 1, n \rrbracket, \lambda_{i, j} = 0
 							\]
-					\item On a ainsi montré que \((l_i m_j)_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket}\) est une base du \(K\)-espace vectoriel \(M\). Or, cette base contient \(n\times p\) vecteurs, donc l'extension M est bien de degré \(n\times p\) par rapport à \(K\), ce qui achève la preuve. \(\square\)
+					\item On a ainsi montré que \((l_i m_j)_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket}\) est une base du \(K\)-espace vectoriel \(M\). Or, cette base contient \(n\times p\) vecteurs, donc l'extension M est bien de degré \(n\times p\) par rapport à \(K\), ce qui achève la proof. \( \)
 					
 					\end{enumerate}
-				\end{preuve}
-			\end{proposition}
+				\end{proof}
 			
 		\subsection{Nombres algébriques}
 			\begin{definition}[Nombre algébrique]
-				Soit \(E\), \(F\), deux corps, \(j : E \longrightarrow F\) une extension de corps, et \(x \in F\). On dit que \(x\) est \emph{algébrique} sur E si : 
+				Soit \(E\), \(F\), deux corps,  et \(x \in F\). On dit que \(x\) est \emph{algébrique} sur E si : 
 				\[
-					\exists P \in E[X]_{\backslash {0}} , P(x) = 0
+					\exists P \in E[X]\setminus\{0\} , P(x) = 0
 				\]
 				Sinon, on dit que x est \emph{transcendant}
 			\end{definition}
 			\begin{definition}[Degré algébrique et polynôme minimal]
 				Soit \(x \in F \) algébrique sur \(E\). Alors il existe un unique polynôme unitaire de degré minimal, non nul, dont x soit racine. On l'appelle le \emph{polynôme minimal}, et son degré est le \emph{degré algébrique} de \(x\).{}
-				
-				\begin{preuve}
-					Soit \(x \in F\), algébrique sur \(E\). 
-					\begin{enumerate}
-						\item \emph{Existence}
-							Par définition
-							\[\exists P_{0} \in E[X] {\backslash \left\{0_{E[X]}\right\} }, P_{0}(x) = 0 \]
-							Posons \(A = 
-							\left\{ n \in \mathbb{N} / \exists Q \in E[X] {\backslash \left\{0\right\} }, 
-								\left\{
-								\begin{array}{ll}
-									Q(x) = 0 \\
-									deg(Q) = n
-								\end{array}
-								\right.
-							\right\}\). Par ce qui précède, \(deg(P_{0}) \in A \), donc \(A \neq \emptyset \). Ainsi on peut prendre \(P \in A\) de degré minimal. Quitte à considérer le coefficient dominant de P, noté p, et \(\frac{P}{p} \in A\), on peut supposer P unitaire. Par construction, P est bien unitaire de degré minimal parmis les polynomes dont x est racine.
-						\item \emph{Unicité}
-							Soit \(P,Q \in E[X], P(x) = Q(x) = 0 \), unitaires de degré minimal. Alors par unicité du minimum, \(deg(P) = deg(Q) \), et leurs coefficients dominants sont égaux à \(1\). Ainsi le polynôme \( (P-Q)(X) \) est de degré strictement inferieur à \(deg(P)\). Or 
-							\[ (P-Q)(x) = P(x) - Q(x) = 0 - 0 = 0\]
-							donc si \(P - Q\) est non nul, il contredit la minimalité de P et de Q. Ainsi \(P-Q = 0_{E[X]} \Rightarrow P = Q \), d'où l'unicité. \(\square\)
-						
-					\end{enumerate}
-				\end{preuve}
 			\end{definition}
+				\begin{proof}
+					Soit \(x \in F\), algébrique sur \(E\). On remarque que l'ensemble des polynômes qui s'annulent en \(x\) est exactement \(Ker \varphi_{x}\) qui est un sous groupe additif. De plus, 
+					\[
+						\begin{aligned}
+							\forall (P,Q) \in Ker\varphi_{x} \times E[X], \; \varphi_{x}(PQ) &= \varphi_{x}(P)\varphi_{x}(Q) \\
+											&=P(x)Q(x) \\
+											&= 0
+						\end{aligned}
+					\]
+					Donc \(Ker \varphi_{x}\) est absorbant pour la deuxième loi, donc c'est un idéal. Or \(E[X]\) est principal, donc il existe un unique polynôme unitaire \(P \in E[X]\) tel que \(Ker \varphi_{x} = P \cdot E[X]\)\\
+					Comme \(x\) est algébrique, il existe un polynôme non nul qui s'annule en \(x\) donc \(Ker \varphi_{x}\) n'est pas réduit à \(\{0\}\), donc \(P \neq 0_{E[X]}\) \\
+					Enfin, soit \(Q \in E[X]\setminus\{0\}\) tel que \( Q(x) = 0 \), alors \(Q \in Ker \varphi_{x} = P \cdot E[X] \) donc \(P | Q\), ce qui assure que le degré de P est minimal.\\
+					Si de plus \(Q\) est supposé de degré minimal et unitaire, on a \(\exists \lambda \in E\setminus\{0\} , Q = \lambda P \) (la non-nulité vient du fait que \(Q\) est lui même non nul). Donc \(P\) et \(Q\) sont associés, et par unicité du polynome unitaire dans une classe d'association, on a \[P = Q\] 
+				\end{proof}
 			
 			\begin{proposition}
-				Soit E un corps, L une extension finie de E. Si \(x \in L\), alors x est algébrique sur E
-				
-				\begin{preuve}
-					Posons \(n = [L:E] \in \mathbb{N} \). Soit \(x \in L \).{}
-					\begin{enumerate}
-						\item Si \(x \in \left\{ 0, 1\right\} \), alors directement x est algébrique sur E (\(P = X \) ou \(P = X - 1 \) conviennent)
-						\item Sinon, on a que : \(\forall k \in \mathbb{N}, x^{k+1} \neq x^{k} \), donc la famille : 
-						\[{}
+				Soit E un corps, F un sur-corps de E. Soit L une E-algèbre contenant E, inclut dans F, de dimension finie. Si \(x \in L\), alors x est algébrique sur E. En particulier, le résultat est vrai si L est une extension de corps
+			\end{proposition}
+				\begin{proof}
+					Posons \(n = dim_{E}(L) \in \mathbb{N} \). Soit \(x \in L \). Considérons la famille
+					\[{}
 						\left( 1 , x , x^{2} , \dots , x^{n} \right)
 						\]
-						a exactement \(n+1\) éléments. Or L est de dimension \(n\), donc la famille est liée, c'est à dire : 
+					\begin{enumerate}
+						\item Soit certains éléments apparaissent plusieurs fois, donc la famille est liée
+						\item Soit tous les éléments sont différents, et comme famille a \(n+1\) éléments dans un espace de dimension \(n\) donc la famille est liée.
+					\end{enumerate}
+					Dans tous les cas, la famille est liée et on a : 
 						\[{}
 							\exists (\lambda_{0},\dots,\lambda_{n}) \in (E^{n})\backslash {(0,\dots,0)}, \sum_{i = 0}^{n} \lambda_{i}x^{i} = 0
 						\]
-						On pose alors : \(P = \sum_{i = 0}^{n} \lambda_{i}X^{i} \) qui n'est pas le polynome nul, car \( (\lambda_{0},\dots,\lambda_{n}) \) n'est pas la famille nulle. Et on a \(P(x) = 0 \), donc x est algébrique  \(\square\)
+						On pose alors : \(P = \sum_{i = 0}^{n} \lambda_{i}X^{i} \) qui n'est pas le polynome nul, car \( (\lambda_{0},\dots,\lambda_{n}) \) n'est pas la famille nulle. Et on a \(P(x) = 0 \), donc x est algébrique  \( \)
+				\end{proof}
+			
+			\begin{proposition}
+				Soit \(x \in F \), algébrique sur \(E\), alors \(E(x)\) est de dimension finie sur \(E\), et le degré de cette extension est égal au degré algébrique de \(x\){}
+			\end{proposition}
+				\begin{proof}
+					Soit \(x \in F \), algébrique sur \(E\).{}
+					
+	\begin{enumerate}
+		\item Montrons tout d'abord que $E[x]$ est une E-algèbre de dimension finie.\\ 
+						Soit \(P_{0} \in E[X]\setminus\{0\} \) le polynôme minimal de $x$, notons \(n = deg(P_{0})\).
+					Posons : 
+					\[{}
+						\begin{array}[t]{lccl}
+							\varphi : 
+							& E_{n-1}[X] & \longrightarrow & E[x] \\
+							& P & \longmapsto & P(x)
+						\end{array}
+					\] et montrons que c'est un morphisme bijectif.
+					
+					\begin{enumerate}
+						\item $\varphi$ est un morphisme comme restriction du morphisme d'évalutation $\varphi_{x}$
+						\item \emph{Injectivité} - Soit \(P \in Ker(\varphi)\)et supposons que \(P \neq 0_{E_{{n_-1}}[X]} \). Quite à considérer le coefficient dominant de P, noté \(p\), et le polynôme \(\frac{1}{p}P\) unitaire, on peut supposer sans perte de généralité que P est unitaire. Comme \(P\) appartient à \(E_{n-1}[X]\), on a \(deg(P) < n\). Or \(P(x) = 0\), donc P contredit le choix de \(P_{0}\), ce qui est absurde. Donc P est le polynome nul, et \(\varphi\) est bien injectif
+						
+						\item \emph{Surjectivité}
+						Soit $y \in E[x]$, on a : $\exists A \in E[X], A(x) = y$. Par division euclidienne : 
+						\[{}
+							\exists (Q,R) \in E[X] \times E_{n-1}[X] , A = PQ + R
+						\]
+						Donc, on a :
+						\[{}
+						\begin{aligned}
+							y &= A(x) \\
+							&= (PQ + R)(x)\\
+							&=\underbrace{P(x)}_{=0}Q(x) + R(x)\\
+							&=\varphi(R)
+						\end{aligned}
+						\]
+						Donc $\varphi$ est bien surjective
 					\end{enumerate}
-				\end{preuve}
-			\end{proposition}
-			
-			\begin{proposition}
-			\end{proposition}
-			
-			\begin{proposition}
-			\end{proposition}
+				Finalement, par propriété des isomorphismes, on déduit que $E[x]$, comme espace isomorphe à un espace de dimension finie, est lui même de dimension finie, et :
+				\[{}
+				dim(E[x]) = dim(E_{n-1}[X]) = n = deg(P_{0})
+				\]
 		
-	\section{Ensemble des nombres constructibles}
-		\subsection{Théorème de Wantzel}
-			\begin{theorem}
+		\item Montrons maintenant que $E[x]$ est un corps. Pour cela, il suffit de montrer que tout élément non nul de  $E[x]$ est invesible, les autres propriétés sont directement héritées de la structure d'algèbre.
+			Soit $y \in E[x]\setminus\{0\} $. Comme élément d'une E-algèbre de dimension finie, par la proposition précédente, $y$ est algébrique sur $E$. Soit \(P_{1} \in E[X]\) son polynôme minmal, notons \(P = \sum_{i=0}^{m}a_{i}X^{i}\).{}
+			\begin{enumerate}
+				\item Supposons $a_{0} = 0$ , alors on aurait : $P_{1} = X\times\sum_{i=1}^{n}a_{i}X^{i-1}$ donc comme $y \neq O$, par intégrité,
+				\[{}
+					\sum_{i=1}^{n}a_{i}y^{i-1} = 0
+				\]
+				Donc $P_{1}$ n'est pas de degré minimal, absurde. Donc : $a_{0} \neq 0 $
+			
+				\item On a en factorisant par y :
+				\[{}
+					\begin{aligned}
+						P_{1}(y) = 0 &\Rightarrow \sum_{i=1}^{n}a_{i}y^{i} = -a_{0}\\
+									&\Rightarrow \sum_{i=1}^{n}a_{i}y^{i-1} = \frac{-a_{0}}{y}\\
+									&\Rightarrow \underbrace{\frac{-1}{a_{0}}\sum_{i=1}^{n}a_{i}y^{i-1}}_{\in E[x]} = \frac{1}{y}
+					\end{aligned}
+				\]
+			\end{enumerate}
+			Ainsi $y$ est inversible, et $E[x]$ est un corps.
+			
+		\item Montrons finalement que $E[x] = E(x)$. 
+			\begin{enumerate}
+				\item[\(\subset\)] On a comme $E(x)$ est un corps, il est stable par produit, combinaisons linaires, donc \(\forall P \in E[X], P(x) \in E(x)\). Or \[ \forall y \in E[x], \exists P_{y} \in E[X], P(x) = y \] Donc,  \[E[x] \subset E(x)\]
+				\item[\(\supset\)] 
+				Par construction de $E(x)$, tout corps contenant $E$ et $x$ contient \(E(x)\), donc, 
+				\[ E[x] \supset E(x) \]
+			\end{enumerate}
+	\end{enumerate}
+	Finalement \(E(x) = E[x]\), et c'est bien une extension de corps, de dimension finie, du degré algébrique de x.
+				\end{proof}
 				
-			\end{theorem}
-			\begin{preuve}
-				
-			\end{preuve}
 		
-		\subsection{Exemples célèbres}
-
-
+		\begin{proposition}
+			Soit $E,F$ deux corps, et $x,y \in F$, algébriques sur E. Alors, 
+			$x+y$ et $xy$ sont aussi algébriques sur E. Enfin si $x\neq0$, $\frac{1}{x}$ est algébrique sur $E$. 
+		\end{proposition}
+		
+		\begin{proposition}
+			Les nombres algébriques sur E forment un corps.
+		\end{proposition}
+		
 
 
 \end{document}
