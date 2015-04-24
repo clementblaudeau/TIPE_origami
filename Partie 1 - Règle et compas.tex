@@ -33,17 +33,13 @@
 \title{TIPE : Origami et constructibilité}
 
 \begin{document}
-%\newtheorem*{proof}{Démonstration}
 \maketitle
 \renewcommand{\contentsname}{Sommaire}
 \tableofcontents{}
 
-\part{Éléments d'introduction}
 \chapter{Introduction à la constructibilité : règle et compas}
-	
-	\section{Définitions}
 		Il est nécessaire de commencer notre étude en posant quelques définitions et résultats élémentaires qui nous seront utiles par la suite.
-		\subsection{Outils d'algèbre}
+		\section{Outils d'algèbre}
 			
 			\begin{definition}[Corps] 
 				Un corps est une structure algébrique \( (\mathbb{K} , + , \times ) \) telle que :
@@ -218,12 +214,14 @@
 							\[
 							\forall i \in \llbracket 1, p \rrbracket, \forall j \in \llbracket 1, n \rrbracket, \lambda_{i, j} = 0
 							\]
-					\item On a ainsi montré que \((l_i m_j)_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket}\) est une base du \(K\)-espace vectoriel \(M\). Or, cette base contient \(n\times p\) vecteurs, donc l'extension M est bien de degré \(n\times p\) par rapport à \(K\), ce qui achève la proof. \( \)
+					\item On a ainsi montré que \((l_i m_j)_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket}\) est une base du \(K\)-espace vectoriel \(M\). Or, cette base contient \(n\times p\) vecteurs, donc l'extension M est bien de degré \(n\times p\) par rapport à \(K\), ce qui achève la preuve. \( \)
 					
 					\end{enumerate}
 				\end{proof}
-			
-		\subsection{Nombres algébriques}
+    
+    
+    %----- Nombres algébriques -----%
+		\section{Nombres algébriques}
 			\begin{definition}[Nombre algébrique]
 				Soit \(E\), \(F\), deux corps,  et \(x \in F\). On dit que \(x\) est \emph{algébrique} sur E si : 
 				\[
@@ -231,6 +229,14 @@
 				\]
 				Sinon, on dit que x est \emph{transcendant}
 			\end{definition}
+			
+			\begin{exemple}
+			$ $
+			    \begin{enumerate} 
+				    \item Le nombre \(\sqrt{2}\) est algébrique sur $\mathbb{Q}$, car il est racine du polynôme \(X^{2} - 2\)
+				    \item Le nombre $i$ est algébrique sur $\mathbb{Q}$, car il est racine du polynome \(X^{2} +1\)
+			    \end{enumerate}
+			\end{exemple}
 			\begin{definition}[Degré algébrique et polynôme minimal]
 				Soit \(x \in F \) algébrique sur \(E\). Alors il existe un unique polynôme unitaire de degré minimal, non nul, dont x soit racine. On l'appelle le \emph{polynôme minimal}, et son degré est le \emph{degré algébrique} de \(x\).{}
 			\end{definition}
@@ -259,7 +265,7 @@
 						\]
 					\begin{enumerate}
 						\item Soit certains éléments apparaissent plusieurs fois, donc la famille est liée
-						\item Soit tous les éléments sont différents, et comme famille a \(n+1\) éléments dans un espace de dimension \(n\) donc la famille est liée.
+						\item Soit tous les éléments sont différents, et comme famille a \(n+1\) éléments dans un espace de dimension \(n\), la famille est liée.
 					\end{enumerate}
 					Dans tous les cas, la famille est liée et on a : 
 						\[{}
@@ -333,8 +339,8 @@
 			
 		\item Montrons finalement que $E[x] = E(x)$. 
 			\begin{enumerate}
-				\item[\(\subset\)] On a comme $E(x)$ est un corps, il est stable par produit, combinaisons linaires, donc \(\forall P \in E[X], P(x) \in E(x)\). Or \[ \forall y \in E[x], \exists P_{y} \in E[X], P(x) = y \] Donc,  \[E[x] \subset E(x)\]
-				\item[\(\supset\)] 
+				\item On a comme $E(x)$ est un corps, il est stable par produit, combinaisons linaires, donc \(\forall P \in E[X], P(x) \in E(x)\). Or \[ \forall y \in E[x], \exists P_{y} \in E[X], P(x) = y \] Donc,  \[E[x] \subset E(x)\]
+				\item 
 				Par construction de $E(x)$, tout corps contenant $E$ et $x$ contient \(E(x)\), donc, 
 				\[ E[x] \supset E(x) \]
 			\end{enumerate}
@@ -348,10 +354,60 @@
 			$x+y$ et $xy$ sont aussi algébriques sur E. Enfin si $x\neq0$, $\frac{1}{x}$ est algébrique sur $E$. 
 		\end{proposition}
 		
+		\begin{proof}
+			Soit \(x,y \in F\), algébriques sur $E$. On note \(P_{x},P_{y} \in E[X]\) leur polynômes minimaux.
+			\begin{enumerate}
+				\item
+				    Comme on a vu, $E(x)$ est un corps, donc il est légitime de considérer $(E(x))(y)$.
+				    De plus $y$ est algébrique sur $(E(x))(y)$, car \(P_{y} \in E[X] \subset (E(x))[X]\), donc $(E(x))(y)$ est de dimension finie sur $E(x)$.
+				\item 
+				    Soit \[\mathcal{B} = (e_{1}, \cdots, e_{n}) \] une base de $E(x)$ (comme $E$-espace vectoriel), et \[\mathcal{C} = (\epsilon_{1},\cdots, \epsilon_{m})\] une base de $(E(x))(y)$ (comme $E(x)$-espace vectoriel).\\
+				    Soit \(a \in (E(x))(y) \), on a : \[\exists (\lambda_{1},\cdots,\lambda_{m}) \in (E(x))^{m}, \; a = \sum_{i=1}^{m}\lambda_{i}\epsilon_{i}\]
+				    Or comme $\mathcal{B}$ est en particulier génératrice dans $E(x)$, on a:
+				    \[\forall i \in \llbracket 1 , m \rrbracket, \exists (\alpha_{i,1},\cdots,\alpha_{i,n}) \in E^{n}, \lambda_{i} = \sum_{j=1}^{n}\alpha_{i,j}e_{j} \]
+				    Donc, finalement, 
+				    \[a = \sum_{i=1}^{m} \left(  \sum_{j=1}^{n}\alpha_{i,j}e_{j} \right)\epsilon_{i} \]
+				    Ainsi la famille \((e_{j}\epsilon_{i})_{(j,i) \in \llbracket 1 , n \rrbracket \times \llbracket 1 , m \rrbracket} \) est génératrice dans $(E(x))(y)$ vu comme {$E$-espace vectoriel}.
+				\item{}
+				    Or cette famille est finie, donc, $(E(x))(y)$ est de dimension finie sur $E$.  Or, \\\({x+y,xy \in (E(x))(y)}\), par la proposition précédemment démontrée, $x+y$ et $xy$ sont algébriques sur E. Enfin si $x \neq 0, \frac{1}{x} \in (E(x))(y)$ est aussi algébrique sur $E$.
+			\end{enumerate}
+		\end{proof}
+		
+		
 		\begin{proposition}
 			Les nombres algébriques sur E forment un corps.
 		\end{proposition}
+		\begin{proof}
+		    C'est immédiat avec les résultats précédents.
+		\end{proof}
+	
+		\section{Application à $\mathbb{Q}$}
+	En ayant mis en place tous les outils nécessaires, on peut désormais aboutir à quelques résultats plus spécifiques à $\mathbb{Q}$, qui seront utiles pour établir avec précision la condition nécessaire et suffisante pour qu'un nombre soit constructible.
 		
-
+		\begin{proposition}
+			Soit E une extension quadratique sur $\mathbb{Q}$. Alors
+			\[{}
+				\exists\, \delta \in \mathbb{Q}, E = \mathbb{Q}(\sqrt{\delta})
+			\]
+		\end{proposition}
+		 Par la suite, on notera indifferemment $\mathbb{Q}(\sqrt{\delta})$ ou $\sqrt{\delta}\,\mathbb{Q}$
+		\begin{proof}
+			Soit E une extension quadratique sur $\mathbb{Q}$. Complétons la famille libre $(1_{\mathbb{Q}})$ en une base : $(1_{\mathbb{Q}},e)$. Comme élément d'une extension finie, $e$ est algébrique, on note $d$ son degré algébrique.
+			\begin{enumerate}
+				\item  Montrons que $d = 2$
+				\begin{enumerate}
+				    \item On a que $d\geq2$, car sinon $e$ serait racine d'un polynome de la forme $aX +b$, avec $(a,b) \in \mathbb{Q}^{2}$, donc serait rationnel. Or  $e \notin Vect(1_{\mathbb{Q}}) = \mathbb{Q}$ par liberté de la base. Donc \[d\geq 2\]
+				    \item On a que $\mathbb{Q}(e) \subset E $ car une extension quadratique est en particulier un corps. En observant les dimensions, on a $d \leq dim_{\mathbb{Q}}(E) = 2$. Donc 
+				    \[d \leq 2\] On a ainsi montré que $d=2$, et l'inclusion $\mathbb{Q}(e) \subset E $ avec l'égalité des dimensions donne : $E = \mathbb{Q}(e)$.
+				\end{enumerate}
+				
+				\item  Soit $P = aX^{2} + bX +c \in \mathbb{Q}[X]$ le polynôme minimal de $e$. On a $a\neq 0$ sans quoi $e$ ne serait pas de degré algébrique 2. Donc \[e = \frac{-b \pm \sqrt{b^{2} - 4ac}}{2a}\]
+				Posons $\delta = b^{2} - 4ac$ et montrons que $E = \mathbb{Q}(\sqrt{\delta}$.\\
+				On a immédiatement que la famille \((1_{\mathbb{Q}},\sqrt{\delta})\) est libre, sans quoi $\sqrt{\delta}$ serait rationnel et $e$ aussi. Donc c'est une base, car E est de dimension 2.\\
+				En réutilisant le résonnement du 1), avec $e' = \sqrt{\delta}$, on obtient : \[E = \mathbb{Q}(\sqrt{\delta})\]
+				    
+				    
+			\end{enumerate}
+		\end{proof}
 
 \end{document}
