@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,french]{report}  
+\documentclass[a4paper,12pt,french]{report}
 \usepackage{babel} 
 \usepackage[T1]{fontenc} 
 \usepackage[utf8]{inputenc} 
@@ -13,7 +13,7 @@
 \usepackage{boiboites}
 \geometry{hmargin=2.5cm,vmargin=2cm}
 
-\newtheorem{ax}{Axiome}[section]
+%\newtheorem{axiome}{Axiome}[section]
 \newtheorem{lemma}{Lemme}[section]
 %\newtheorem{proposition}{Proposition}[section]
 \newtheorem{theorem}{Théorème}[section]
@@ -26,6 +26,7 @@
 \definecolor{orange}{rgb}{0.9,0.4,0}
 
 \newboxedtheorem[boxcolor=blue,titleboxcolor = blue,titlebackground=blue!20,titlecolor = black]{proposition}{Proposition}{subsection}
+\newboxedtheorem[boxcolor=red,titleboxcolor = red,titlebackground=red!20,titlecolor = black]{axiome}{Axiome}{part}
 
 % ------
 
@@ -294,7 +295,7 @@
 					
 					\begin{enumerate}
 						\item $\varphi$ est un morphisme comme restriction du morphisme d'évalutation $\varphi_{x}$
-						\item \emph{Injectivité} - Soit \(P \in Ker(\varphi)\)et supposons que \(P \neq 0_{E_{{n_-1}}[X]} \). Quite à considérer le coefficient dominant de P, noté \(p\), et le polynôme \(\frac{1}{p}P\) unitaire, on peut supposer sans perte de généralité que P est unitaire. Comme \(P\) appartient à \(E_{n-1}[X]\), on a \(deg(P) < n\). Or \(P(x) = 0\), donc P contredit le choix de \(P_{0}\), ce qui est absurde. Donc P est le polynome nul, et \(\varphi\) est bien injectif
+						\item \emph{Injectivité} - Soit \(P \in Ker(\varphi)\) et supposons que \(P \neq 0_{E_{{n_-1}}[X]} \). Quite à considérer le coefficient dominant de P, noté \(p\), et le polynôme \(\frac{1}{p}P\) unitaire, on peut supposer sans perte de généralité que P est unitaire. Comme \(P\) appartient à \(E_{n-1}[X]\), on a \(deg(P) < n\). Or \(P(x) = 0\), donc P contredit le choix de \(P_{0}\), ce qui est absurde. Donc P est le polynome nul, et \(\varphi\) est bien injectif
 						
 						\item \emph{Surjectivité}
 						Soit $y \in E[x]$, on a : $\exists A \in E[X], A(x) = y$. Par division euclidienne : 
@@ -324,7 +325,7 @@
 				\[{}
 					\sum_{i=1}^{n}a_{i}y^{i-1} = 0
 				\]
-				Donc $P_{1}$ n'est pas de degré minimal, absurde. Donc : $a_{0} \neq 0 $
+				Donc $P_{1}$ ne serait pas de degré minimal, absurde. Donc : $a_{0} \neq 0 $
 			
 				\item On a en factorisant par y :
 				\[{}
@@ -402,12 +403,107 @@
 				\end{enumerate}
 				
 				\item  Soit $P = aX^{2} + bX +c \in \mathbb{Q}[X]$ le polynôme minimal de $e$. On a $a\neq 0$ sans quoi $e$ ne serait pas de degré algébrique 2. Donc \[e = \frac{-b \pm \sqrt{b^{2} - 4ac}}{2a}\]
-				Posons $\delta = b^{2} - 4ac$ et montrons que $E = \mathbb{Q}(\sqrt{\delta}$.\\
+				Posons $\delta = b^{2} - 4ac$ et montrons que $E = \mathbb{Q}(\sqrt{\delta})$.\\
 				On a immédiatement que la famille \((1_{\mathbb{Q}},\sqrt{\delta})\) est libre, sans quoi $\sqrt{\delta}$ serait rationnel et $e$ aussi. Donc c'est une base, car E est de dimension 2.\\
 				En réutilisant le résonnement du 1), avec $e' = \sqrt{\delta}$, on obtient : \[E = \mathbb{Q}(\sqrt{\delta})\]
 				    
 				    
 			\end{enumerate}
 		\end{proof}
+
+% ----- PARTIE II ----- %
+\chapter{Constructibilité en origami}
+	Nous allons voir, au travers de cette partie, comment la formalisation mathématique des pratiques de l'origami donne naissance à une constructibilité étendue, qui sera ensuite utilisée lors de la conception des \emph{crease pattern} de la partie III.
+	
+	\section{Définitions et axiomes}
+		Même si l'oppération du pliage nécessite 3 dimensions, on ne s'interessera qu'au résultat de cet opération : le pli. Ainsi on peut se placer dans le plan muni de sa base canonique, soit $\mathbb{R}^{2}$
+		\begin{definition}[Pli et point]
+			Un \emph{pli} est une droite de $\mathbb{R}^{2}$, donc en particulier un ensemble de points. Un \emph{point} est un couple de coordonnées réelles.
+		\end{definition}
+		\begin{definition}[Pliage]
+			On dit qu'un pli $P$ \emph{envoie} un point $p_{1}$ sur un autre point $p_{2}$ si $p_{2}$ est l'image de $p_{1}$ par la symétrie d'axe $P$. On dit qu'un pli $P$ \emph{envoie} un pli $P_{1}$ sur un pli $P_{2}$ si tout point de $P_{1}$ s'envoie par $P$ sur $P_{2}$
+		\end{definition}
+		Après avoir posé le support, il est nécessaire de se donner les outils de construction. Ici, pas de règle ni de compas, mais 7 axiomes correspondants aux opérations élémentaires réalisables. On se convaincra aisément que ces opérations sont en effet faisables avec une feuille réelle. \\
+		Ce jeu d'axiome n'as pas été montré minimal, et ne l'est peut-être pas. Il est en revanche intuitif, et donne un sens à des opérations naturelles dans la pratique de l'origami. 
+		\begin{axiome}
+			Étant donné deux points $p_{1}$ et $p_{2}$ distincts, il existe un unique pli qui passe par ces deux points.
+		\end{axiome}
+		
+		\begin{figure}
+		    \begin{center}[h]
+			\includegraphics[height=130px]{media/Ax1.eps}
+		    \end{center}
+			\caption{Illustration de l'axiome 1}
+		\end{figure}
+		
+		On peut ainsi construire les droites, comme avec une règle.
+		\begin{axiome}
+			Étant donné deux points $p_{1}$ et $p_{2}$ distincts, il existe un unique pli qui envoie $p_{1}$ sur $p_{2}$.
+		\end{axiome}
+		
+		\begin{figure}
+		    \begin{center}[h]
+			\includegraphics[height=130px]{media/Ax2.eps}
+		    \end{center}
+			\caption{Illustration de l'axiome 2}
+		\end{figure}
+		
+		Cette opération est complétement équivalente au tracage d'une médiatrice entre deux points.
+		\begin{axiome}
+			Étant donné deux plis $P_{1}$ et $P_{2}$ distincts, il existe un unique pli qui envoie $P_{1}$ sur $P_{2}$.
+		\end{axiome}
+		
+		\begin{figure}
+		    \begin{center}[h]
+			\includegraphics[height=130px]{media/Ax3.eps}
+		    \end{center}
+			\caption{Illustration de l'axiome 3}
+		\end{figure}
+		
+		Cette opération est complétement équivalente au tracage d'une bissectrice entre deux droites.
+		\begin{axiome}
+			Étant donné un point $p_{1}$ et un pli $P_{1}$, il existe un unique pli $P$ qui passe par $p_{1}$ et soit perpendiculaire à $P_{1}$
+		\end{axiome}
+		
+		\begin{figure}
+		    \begin{center}[h]
+			\includegraphics[height=130px]{media/Ax4.eps}
+		    \end{center}
+			\caption{Illustration de l'axiome 4}
+		\end{figure}
+		Cette opération est encore réalisable à la régle et au compas, moyennant la recherche de médiatrices.
+		\begin{axiome}
+			Étant donné deux points $p_{1}$ et $p_{2}$, et un pli $P_{1}$, il existe un pli $P$ qui envoie $p_{1}$ sur un point de $P_{1}$, en passant par $p_{2}$
+		\end{axiome}
+		\begin{figure}[h]
+		    \begin{center}
+			\includegraphics[height=130px]{media/Ax5.eps}
+		    \end{center}
+			\caption{Illustration de l'axiome 5}
+		\end{figure}
+		Cette opération correspond à la recherche d'une intersection entre un cercle et une droite. Il peut y avoir 0,1 ou 2 solutions.
+		
+		
+		\begin{axiome}
+			Étant donné deux points $p_{1}$ et $p_{2}$, et deux plis $P_{1}$ et $P_{2}$, il existe un pli $P$ qui envoie $p_{1}$ sur un point de $P_{1}$ et $p_{2}$ sur un point de $P_{2}$
+		\end{axiome}
+		\begin{figure}[h]
+		    \begin{center}
+			\includegraphics[height=130px]{media/Ax6.eps}
+		    \end{center}
+			\caption{Illustration de l'axiome 6}
+		\end{figure}
+		 C'est cette opération précise qui apporte un avantage au système axiomatique de l'origami. En effet on montrera par la suite qu'elle permet de résoudre des équations de degré 3.
+		
+		
+		\begin{axiome}
+			Étant donné un point $p_{1}$ et deux plis $P_{1}$ et $P_{2}$, il existe un pli qui envoie $p_{1}$ sur $P_{1}$, perpendiculairement à $P_{2}$
+		\end{axiome}
+		\begin{figure}[h]
+		    \begin{center}
+			\includegraphics[height=130px]{media/Ax7.eps}
+		    \end{center}
+			\caption{Illustration de l'axiome 7}
+		\end{figure}
 
 \end{document}
