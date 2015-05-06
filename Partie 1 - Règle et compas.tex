@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,french]{report}
+\documentclass[a4paper,12pt,french,draft]{report}
 \usepackage{babel} 
 \usepackage[T1]{fontenc} 
 \usepackage[utf8]{inputenc} 
@@ -12,21 +12,22 @@
 \usepackage{graphicx}
 \usepackage{boiboites}
 \geometry{hmargin=2.5cm,vmargin=2cm}
-\renewcommand{\qedsymbol}{$\checkmark$}
 %\newtheorem{axiome}{Axiome}[section]
 \newtheorem{lemma}{Lemme}[section]
 %\newtheorem{proposition}{Proposition}[section]
-\newtheorem{theorem}{Théorème}[section]
+%\newtheorem{theorem}{Théorème}[section]
 \newtheorem{definition}{Définition}[section]
 \newtheorem{exemple}{Éxemple}[section]
+\newtheorem{corollaire}{Corollaire}[section]
 
 % ------
 
 \definecolor{violet}{rgb}{0.5,0,0.5}
 \definecolor{orange}{rgb}{0.9,0.4,0}
 
-\newboxedtheorem[boxcolor=blue,titleboxcolor = blue,titlebackground=blue!20,titlecolor = black]{proposition}{Proposition}{subsection}
+\newboxedtheorem[boxcolor=black,titleboxcolor = black,titlebackground=blue!20,titlecolor = black]{proposition}{Proposition}{subsection}
 \newboxedtheorem[boxcolor=red,titleboxcolor = red,titlebackground=red!20,titlecolor = black]{axiome}{Axiome}{part}
+\newboxedtheorem[boxcolor=blue,titleboxcolor = blue,titlebackground=blue!20,titlecolor = black]{theorem}{Théorème}{part}
 
 % ------
 
@@ -215,7 +216,7 @@
 							\[
 							\forall i \in \llbracket 1, p \rrbracket, \forall j \in \llbracket 1, n \rrbracket, \lambda_{i, j} = 0
 							\]
-					\item On a ainsi montré que \((l_i m_j)_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket}\) est une base du \(K\)-espace vectoriel \(M\). Or, cette base contient \(n\times p\) vecteurs, donc l'extension M est bien de degré \(n\times p\) par rapport à \(K\), ce qui achève la preuve. \( \)
+					\item On a ainsi montré que \((l_i m_j)_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket}\) est une base du \(K\)-espace vectoriel \(M\). Or, cette base contient \(n\times p\) vecteurs, donc l'extension M est bien de degré \(n\times p\) par rapport à \(K\), ce qui achève la proof. \( \)
 					
 					\end{enumerate}
 				\end{proof}
@@ -223,6 +224,7 @@
     
     %----- Nombres algébriques -----%
 		\section{Nombres algébriques}
+			\subsection{Cas Général}
 			\begin{definition}[Nombre algébrique]
 				Soit \(E\), \(F\), deux corps,  et \(x \in F\). On dit que \(x\) est \emph{algébrique} sur E si : 
 				\[
@@ -382,7 +384,7 @@
 		    C'est immédiat avec les résultats précédents.
 		\end{proof}
 	
-		\section{Application à $\mathbb{Q}$}
+		\subsection{Application à $\mathbb{Q}$}
 	En ayant mis en place tous les outils nécessaires, on peut désormais aboutir à quelques résultats plus spécifiques à $\mathbb{Q}$, qui seront utiles pour établir avec précision la condition nécessaire et suffisante pour qu'un nombre soit constructible.
 		
 		\begin{proposition}
@@ -410,6 +412,263 @@
 				    
 			\end{enumerate}
 		\end{proof}
+		
+		% -----------------%
+		
+		
+		\section{Ensemble des nombres constructibles}
+		
+			\subsection{Préliminaires}
+			Les opérations de construction à la règle et au compas sont équivalentes à certaines opérations algébriques. Il faut donc formuler un problème algébrique équivalent au problème géométrique avant de conclure.
+			
+			\begin{definition}
+				A chaque étape d'une construction à la régle et au compas, les opérations élémentaires suivantes sont autorisées:
+				\begin{enumerate}
+					\item Construction d'une intersection de droites définies chacune par deux points construits.
+					\item Construction de l'intersection d'une droite définie par deux points construits et d'un cercle défini par deux points construits (son centre et l'extrémité d'un rayon)
+					\item Construction d'une intersection entre deux cercles chacun défini par deux points construits.
+				\end{enumerate}
+			\end{definition}
+			
+			\begin{definition}
+				On définit par récurrence la suite \((\mathscr{C}_i)_{i \in \mathbb{N}} \) :
+				
+				
+				
+				\begin{itemize}
+					\item \(\mathscr{C}_0 = \{(0, 0), (1, 0)\}\)
+					\item \(\forall n \in \mathbb{N}, \mathscr{C}_{n+1} = A\cup \mathscr{C}_{n}\), avec \(A\) l'ensemble des points constructibles par opérations élémentaires à partir de \( \mathscr{C}_{n} \).
+				\end{itemize}
+			\end{definition}
+			
+			\begin{definition}
+				On définit l'ensemble des points constructibles \(\mathscr{C} = \bigcup_{i \in \mathbb{N}} \mathscr{C}_i \) puis l'ensemble des réels constructibles \(\mathscr{C}_\mathbb{R}\) comme l'ensemble des abscisses des points de \( \mathscr{C} \).
+			\end{definition}
+				
+			
+		\begin{proposition} \( \mathscr{C}_\mathbb{R} \) est un sous-corps de \(\mathbb{R}\). A fortori, on aura donc \( \mathbb{Q} \subset \mathscr{C}_\mathbb{R} \)
+		\end{proposition}
+			\begin{proof}
+				On travaillera dans un repère orthonormé $(O, \vec{OI}, \vec{OJ})$
+				\begin{enumerate}
+					\item On a $(1, 0) \in \mathscr{C}_0$ par définition, donc $(1, 0) \in \mathscr{C}$ donc $1 \in \mathscr{C}_\mathbb{R}$
+					\item Montrons que $\forall (x, y) \in \mathscr{C}_\mathbb{R}, x-y \in \mathscr{C}_\mathbb{R}$. Soit donc $(x, y) \in \mathbb{C}_\mathbb{R}$. Par définition de $\mathscr{C}_\mathbb{R}$, il existe alors deux points constructibles sur l'axe des abscisses $A$ et $B$ d'abscisses respectives $x$ et $y$. Proposons alors une méthode de construction pour le point $F$ de coordonnées $(x-y, 0)$, ce qui suffira à conclure.
+						\begin{itemize}
+							\item Si $y = 0$ ou $y = 2x$, rien à construire.
+							\item Sinon : 
+								\begin{enumerate}
+									\item Tracer le cercle de centre $O$ passant par $B$. Son intersection avec l'axe des ordonnées est le point $M$.
+									\item Tracer les points $C$ et $E$, intersections du cercle de centre $M$ passant par $A$ et du cercle de centre $B$ passant par $M$
+									\item Tracer le point $E$, intersection des droites $(CD)$ et $(MA)$
+									\item Tracer $F$, l'intersection du cercle de centre $E$ passant par $B$ et de l'axe des abscisses. Le point $F$ a pour coordonnées $(x-y, 0)$. Ce qui achève la construction.	
+								\end{enumerate}
+								Ici, on a simplement construit un parallélogramme définit par le segment $[AB]$ et le point $M$. Puis on a projeté le sommet construit sur l'axe des abscisses.
+						\end{itemize}
+					\item Montrons que \( \forall (x, y) \in \mathscr{C}_\mathbb{R}, x \times y \in \mathscr{C}_\mathbb{R}\). Soit donc $(x, y) \in \mathscr{C}_\mathbb{R}$. Supposons donc les points $A (x, 0)$ et $B (y, 0)$ construits. Proposons alors une méthode de construction du point $H$ de coordonnées $(x\times y, 0)$:
+						\begin{enumerate}
+							\item Construire le point $C$, l'intersection de l'axe des ordonnées avec le point de centre $O$ passant par $B$.
+							\item Tracer les points $D$ et $E$, intersection du cercle de centre $A$ passant par $C$ et du cercle de centre $C$ passant par $A$.
+							\item Tracer le point $F$, intersection des droites $(DE)$ et $(AC)$
+							\item Tracer le point $G$, intersection du cercle de centre $F$ passant par $J$ et de la droite $(JF)$.
+							\item Tracer le point $H$, intersection de l'axe des abscisses et de la droite $(CG)$.
+						\end{enumerate}
+						
+					\item Montrons que \( \forall x \in \mathscr{C}_\mathbb{R}\setminus \{0\}, x^{-1} \in \mathscr{C}_\mathbb{R} \). Soit donc $x \in \mathscr{C}_\mathbb{R}$. Sans perte de généralité, quitte à construire $-1/x$, ce qui serait suffisant par le point précédent, supposons $x > 0$. Supposons ainsi le point $A$ de coordonnées $(x, 0)$ construit et construisons le point $G$ de coordonnées $(1/x, 0)$
+					\begin{enumerate}
+						\item Constuire le point $C$, intersection d'ordonnée positive du cercle de centre $O$ passant par $B$ et de l'axe des ordonnée.
+						\item Construire les points $B$ et $D$ intersections du cercle de centre $I$ passant par $J$ et du cercle de centre $J$ passant par $I$.
+						\item Constuire le point $E$, intersection des droites $(BD)$ et $(IJ)$.
+						\item Construire le point $F$, intersection distincte de $C$ de la $(CE)$ et du cercle de centre $E$ passant par $C$.
+						\item Construire $G$ le point d'intersection de $(JF)$ et de l'axe des abscisses.
+					\end{enumerate}
+					On utilise de même le théorème de Thalès pour conclure directement.
+							
+				\end{enumerate}
+			\end{proof}
+		
+		\begin{proposition}[Equivalence algèbre-géométrie]
+				Les trois opérations élémentaires construisent chacune les racines réelles d'un polynôme de \(\mathbb{K}_2[X]\) dont les coefficients dépendent des points construits au préalable qui servent de base, avec $\mathbb{K}$ le plus petit sous-corps de $\mathscr{C}_\mathbb{R}$ contenant les coordonnées des points construits au préalable.
+		\end{proposition}
+			\begin{proof}
+					On prendra tous nos points de base dans un sous-corps $\mathbb{K}$ de $\mathscr{C}_\mathbb{R}$.
+					\begin{enumerate}
+						\item{Intersection de deux droites}
+							On définit deux droites \( \Delta_1 \), \( \Delta_2 \) définies respectivement à partir des points distincts \(A_1\), \(B_1\) et \(A_2\), \(B_2\), de coordonnées respectives \( (x_{A_1}, y_{A_1}), (x_{B_1}, y_{B_1}), (x_{A_2}, y_{A_2}), (x_{B_2}, y_{B_2})\). On suppose ainsi ces points préalablement construits. On suppose les deux droites non parallèles. Le point d'intersection des deux droites est alors de coordonnées :
+							\[
+							x = \frac{(x_{A_1} y_{B_1}-y_{A_1} x_{B_1})(x_{A_2}-x_{B_2})-(x_{A_1}-x_{B_1})(x_{A_2} y_{B_2}-y_{A_2} x_{B_2})}{(x_{A_1}-x_{B_1})(y_{A_2}-y_{B_2})-(y_{A_1}-y_{B_1})(x_{A_2}-x_{B_2})}	
+							\]
+							\[ y=\frac{(x_{A_1}y_{B_1}-y_{A_1}								x_{B_1})(y_{A_2}-y_{B_2})-(y_{A_1}-y_{B_1})(x_{A_2} y_{B_2}-y_{A_2} x_{B_2})}{(x_{A_1}-x_{B_1})(y_{A_2}-y_{B_2})-(y_{A_1}-y_{B_1})(x_{A_2}-x_{B_2})}
+							\]		
+						\item{Intersection d'une droite et d'un cercle} Soit $\Delta$ une droite définie par les points $A$ et $B$ distincts, et $\mathcal{C}$ le cercle de centre $\Omega$ passant par un point $M$. L'ensemble des intersections est l'ensemble des solutions du système :
+							\[
+							\left \{
+							\begin{array}{ll}
+								(y_B - y_A)x + (x_A - x_B)y + x_A(y_A - y_B) + y_A(x_B-x_A) = 0
+								\\
+								(x-x_\Omega)^2 + (y-y_\Omega)^2 = (x_M - x_\Omega)^2 + (y_M - y_\Omega)^2
+							\end{array}
+							\right.
+							\]
+						Puis, $A$ et $B$ étant distincts, on a \(y_B - y_A \neq 0\) ou \(x_B - x_A \neq 0\). Le raisonnement étant symétrique dans les deux cas, supposons que \(x_B - x_A \neq 0\). Alors, en substituant, on obtient :
+							\[
+							\left \{
+							\begin{array}{lllll}
+								a = \frac{y_A-y_B}{x_A-x_B}\\
+								b = x_A\left(y_B - y_A + \frac{y_B-y_A}{x_A-x_B}\right)+y_A \\
+								r = \sqrt{(x_M - x_\Omega)^2 + (y_M - y_\Omega)^2} \\
+								y = ax + b \\
+								(a^2 + 1)x^2 + 2(a(b-y_B)-x_\Omega)x + {x_\Omega}^2 + (b-y_\Omega)^2 - r^2 = 0
+							\end{array}
+							\right.
+							\]
+						Ce qui achève la proof. D'autre part, s'il existe une solution, elle sera bien, pour chaque coordonnée de l'intersection, de la forme \(k + l \sqrt{\delta_0}\), avec \(k, l, \delta_0 \in \mathbb{K}\).
+						\item{Intersection de deux cercles} Si l'intersection existe, une obtient, par le même raisonnement, une même forme de solution.
+					\end{enumerate}
+					On a ainsi montré qu'une opération de construction revient à la construction d'une \emph{extension quadratique}.
+				\end{proof}
+		
+		\begin{proposition}[Construction d'une racine carrée]
+			Etant donné une longueur construite \(l \in \mathbb{R}^+\), il est possible de construire \(\sqrt{l}\).{}
+		\end{proposition}
+			\begin{proof}
+				\begin{enumerate}
+					\item{Méthode de construction}
+					On se donne au préalable un repère \( (O, \vec{u_x}, \vec{u_y}) \) et un point \(A(l, 0)\). 
+						\begin{enumerate}
+							\item Tracer le point \(B\) de coordonnées \((-1, 0)\). Pour cela, il suffit de tracer l'intersection du cercle de centre \(O\) passant par \((0, 1)\) avec l'axe des abscisses.
+							\item Tracer le milieu \(I\) de \([AB]\). Pour cela, on trace la médiatrice, ce qui nécessite uniquement les opérations élémentaires données par la définition 1.2.1.
+							\item L'intersection du cercle de centre \(I\) et de rayon \(IA\) coupe l'axe des ordonnées en \(J\).
+							\item \( J \) a alors pour coordonnées \((0, \sqrt{l})\), ce qui achève la construction
+						\end{enumerate}
+					\item{Validité} On a bien utilisé les opérations élémentaires, et les coordonnées de J sont données par le théorème de Pythagore.
+				\end{enumerate}
+			\end{proof}
+			
+		\subsection{Théorème de Wantzel}
+			\begin{theorem}
+				Un réel \( x \) est constructible si et seulement si il existe une suite finie d'extensions \emph{quadratiques},
+					\[
+					\mathbb{Q} = K_0 \subset K_1 \subset \dots \subset K_r
+					\]
+				telle que \( x \in K_r \).
+			\end{theorem}
+			\begin{proof}
+				\begin{enumerate}
+					\item{Sens direct}
+					Soit \(x \in \mathscr{C}_\mathbb{R}\)
+					Alors, par définition, 
+					\[\exists j \in \mathbb{N}, x \in \mathscr{C}_j
+					\]
+					Or, \(\mathscr{C}_0, \dots, \mathscr{C}_j\) est une suite d'extension quadratiques, ce qui nous permet de conclure.
+					\item{Sens indirect} Montrons le par récurrence sur r. On sait construire \(\mathbb{Q} = K_0\) par opérations élémentaires. Puis, soit \(r \in \mathbb{N}\) et supposons \(K_r \) construit. Or, \(K_{r+1}\) est une extension quadratique de \(K_{r}\), et on a donc, par la proposition :
+					\[
+					\exists \delta_0 \in {K_r}^+, K_{r+1} = K(\sqrt{\delta_0})
+					\]
+					Ainsi, il suffit de construire \(\sqrt{\delta_0}\) pour que \(K_{r+1}\) soit constructible. En effet, on construit nécéssairement un corps contenant \(K_r\) et \(\sqrt{\delta_0}\), donc contenant \(K_{r+1}\) par minimalité de l'extension de corps.
+					Or, on sait construire une racine carrée d'un nombre construit, ce qui nous permet de conclure, et d'achever la récurrence.
+				\end{enumerate}
+			\end{proof}
+		La conséquence la plus importante du théorème de Wantzel est donnée par l'énoncé suivant. C'est celui là que l'on utilisera dans la pratique.
+			
+		    \begin{corollaire}
+		     Tout nombre réel constructible est un nombre algébrique dont le degré algébrique est de la forme \( 2^{n}, n\geq 0 \).
+		     \end{corollaire}   
+		     
+		     \begin{proof}
+		     Soit x un nombre constructible. Par le théorème de Wantzel, il 
+		     existe des extensions quadratiques \( \mathbb{Q} = K_{0} 
+		     \subset K_{1} \subset \dots \subset K_{r} \) telles que x 
+		     \( \in K_{r} \). Donc x appartient à une extension de \( 
+		     \mathbb{Q} \) de degré fini. Ainsi par la proposition 
+		     1.1.2, x est algébrique. On sait de plus que \( 
+		     [K_{i}:K_{i+1}] = 2 \) donc par la proposition sur 
+		     la relation de Chasles sur les degrés \( 
+		     [\mathbb{Q}:K_{r}] 
+		     = 2^{r} \). Il reste à déduire le degré de \( 
+		     [\mathbb{Q}(x):\mathbb{Q}] \). Comme \( \mathbb{Q}(x) \subset K_{r} 
+		     \), nous avons toujours par la proposition sur la relation 
+		     de Chasles du degré que \( [K{r}:\mathbb{Q}(x)]\times 
+		     [\mathbb{Q}(x):\mathbb{Q}] = [K_{r}:\mathbb{Q}] = 2^{r}. 
+		     \)Donc\( [\mathbb{Q}(x):\mathbb{Q}] \) divise \(2^{r}\) et est donc 
+		     de la forme \(2^{n}\).
+		     \end{proof} 
+		     
+		     \begin{corollaire}
+		     
+		     \(\mathscr{C}_{\mathbb{R}} \) est le plus petit sous-corps 
+		     de \(\mathbb{R}\) stable par racine carréee, c'est-à-dire 
+		     telles que :
+		     \begin{enumerate}
+		      \item \( (x \in \mathscr{C}_{\mathbb{R}}\) et \(x \geq 0) 
+		      \implies \sqrt{x} \in \mathscr{C}_{\mathbb{R}}.\)
+		      \item Si K est un autre sous-corps de \(\mathbb{R}\) 
+		      stable par racine carrée alors \(\mathscr{C}_{\mathbb{R}} 
+		      \subset K.\)
+		      
+		     \end{enumerate}
+		     
+		     \end{corollaire}
+		
+		
+		\subsection{Exemples célèbres}
+		
+        On peut désormais répondre aux problèmes de la trissection 
+        d'un angle, de la duplication du cube et ainsi que de la 
+        quadrature du cercle.
+        
+             \begin{corollaire}
+            
+               
+                On a les deux énoncés suivants :
+             \begin{enumerate}    
+                \item Si un nombre réel x est constructible alors x est algébrique. 
+                   C'est-à-dire qu'il existe un polynôme P \( \in \mathbb{Q}[X] 
+                   \) tel que \(P(x)=0.\)
+                \item De plus le degré algébrique de x est de la 
+                forme \( 2^{n},n \ge 0 \). C'est-à-dire que le plus 
+                petit degré des polynômes P \( \in \mathbb{Q}[X] \) 
+                vérifiant \(P(x)=0\) est une puissance de 2.
+             \end{enumerate}      
+             \end{corollaire}
+             
+             Le théorème qui suit permet de répondre au problème de la duplication du cube.
+             
+             \begin{theorem}
+             
+             \(\sqrt[3]{2}\) n'est pas constructible.
+             
+             \end{theorem}
+             
+             \begin{proof}
+             
+             \(\sqrt[3]{2}\) est une racine du polynôme 
+             \(P(X)=X^{3}-2\). Ce polynôme est unitaire et 
+             irréductible dans \(\mathbb{Q}[X]\), donc \(\sqrt[3]{2}\) 
+             est algébrique de degré 3. Ainsi son degré n'est pas de 
+             la forme \(2^{n}\). \(\sqrt[3]{2}\) n'est donc pas 
+             constructible.
+             
+             \end{proof}
+          
+          La proposition suivante révèle l'impossibilité de 
+          trissection d'un angle. Elle exhibe un angle qui ne peut pas 
+          être coupé en 3.
+          
+             \begin{theorem}
+             
+             Le nombre \(\frac{\pi}{3}\) est constructible mais ne peut 
+             pas être coupé en trois car \(\cos (\frac{\pi}{9})\) n'est pas 
+             constructible.
+          
+          
+          
+             \end{theorem}
+        
+
+
+		
+		
+		% -----------------%
 
 % ----- PARTIE II ----- %
 \chapter{Constructibilité en origami}
@@ -505,5 +764,32 @@
 		    \end{center}
 			\caption{Illustration de l'axiome 7}
 		\end{figure}
+	
+	\section{Ensemble des nombres origami-constructibles}
+	
+	\subsection{Extension du théorème de Wantzel}
+		\begin{theorem}
+			Un réel \( x \) est origami-constructible si et seulement si il existe une suite finie d'extensions qui sont \emph{quadratiques} ou \emph{cubiques},
+					\[
+					\mathbb{Q} = K_0 \subset K_1 \subset \dots \subset K_r
+					\]
+			telle que \( x \in K_r \).
+		\end{theorem}
+	
+	\subsection{Exemples célèbres revisités}
+		\subsubsection{La trisection d'Abe}
+		\subsubsection{La duplication du cube}
+	
+	\section{Hyperorigami et nombres hyper-constructibles}
+	
+
+% ----- PARTIE III ----- %
+\chapter{Le \emph{Crease Pattern} et la faisabilité}
+	\section{Définitions et exemples}
+	\section{De l'origami au \emph{Crease Pattern}: les conditions nécessaires}
+	\section{Du \emph{Crease Pattern} à l'origami : des conditions suffisantes ?}
+
+\chapter{La conception assistée : étude du logiciel TreeMaker}
+
 
 \end{document}
