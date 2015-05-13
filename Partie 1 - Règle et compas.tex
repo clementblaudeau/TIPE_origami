@@ -26,8 +26,8 @@
 \definecolor{orange}{rgb}{0.9,0.4,0}
 
 \newboxedtheorem[boxcolor=black,titleboxcolor = black,titlebackground=blue!20,titlecolor = black]{proposition}{Proposition}{subsection}
-\newboxedtheorem[boxcolor=red,titleboxcolor = red,titlebackground=red!20,titlecolor = black]{axiome}{Axiome}{part}
-\newboxedtheorem[boxcolor=blue,titleboxcolor = blue,titlebackground=blue!20,titlecolor = black]{theorem}{Théorème}{part}
+\newboxedtheorem[boxcolor=red,titleboxcolor = red,titlebackground=red!20,titlecolor = black]{axiome}{Axiome}{}
+\newboxedtheorem[boxcolor=blue,titleboxcolor = blue,titlebackground=blue!20,titlecolor = black]{theorem}{Théorème}{}
 
 % ------
 
@@ -35,12 +35,19 @@
 \title{TIPE : Origami et constructibilité}
 
 \begin{document}
+\newtheorem*{remarque}{Remarque}
 \maketitle
 \renewcommand{\contentsname}{Sommaire}
 \tableofcontents{}
 
+% --------------------- -------- --------------------- 
+% --------------------- PARTIE I --------------------- 
+% --------------------- -------- --------------------- 
+
 \chapter{Introduction à la constructibilité : règle et compas}
 		Il est nécessaire de commencer notre étude en posant quelques définitions et résultats élémentaires qui nous seront utiles par la suite.
+
+% ----------------------------------------------------
 		\section{Outils d'algèbre}
 			
 			\begin{definition}[Corps] 
@@ -216,13 +223,14 @@
 							\[
 							\forall i \in \llbracket 1, p \rrbracket, \forall j \in \llbracket 1, n \rrbracket, \lambda_{i, j} = 0
 							\]
-					\item On a ainsi montré que \((l_i m_j)_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket}\) est une base du \(K\)-espace vectoriel \(M\). Or, cette base contient \(n\times p\) vecteurs, donc l'extension M est bien de degré \(n\times p\) par rapport à \(K\), ce qui achève la proof. \( \)
+					\item On a ainsi montré que \((l_i m_j)_{(i, j) \in \llbracket 1, n \rrbracket \times \llbracket 1, p \rrbracket}\) est une base du \(K\)-espace vectoriel \(M\). Or, cette base contient \(n\times p\) vecteurs, donc l'extension M est bien de degré \(n\times p\) par rapport à \(K\), Ce qui achève la preuve. \( \)
 					
 					\end{enumerate}
 				\end{proof}
     
     
-    %----- Nombres algébriques -----%
+
+% ----------------------------------------------------
 		\section{Nombres algébriques}
 			\subsection{Cas Général}
 			\begin{definition}[Nombre algébrique]
@@ -408,14 +416,11 @@
 				Posons $\delta = b^{2} - 4ac$ et montrons que $E = \mathbb{Q}(\sqrt{\delta})$.\\
 				On a immédiatement que la famille \((1_{\mathbb{Q}},\sqrt{\delta})\) est libre, sans quoi $\sqrt{\delta}$ serait rationnel et $e$ aussi. Donc c'est une base, car E est de dimension 2.\\
 				En réutilisant le résonnement du 1), avec $e' = \sqrt{\delta}$, on obtient : \[E = \mathbb{Q}(\sqrt{\delta})\]
-				    
-				    
 			\end{enumerate}
 		\end{proof}
-		
-		% -----------------%
-		
-		
+
+
+% ----------------------------------------------------
 		\section{Ensemble des nombres constructibles}
 		
 			\subsection{Préliminaires}
@@ -446,7 +451,7 @@
 			\end{definition}
 				
 			
-		\begin{proposition} \( \mathscr{C}_\mathbb{R} \) est un sous-corps de \(\mathbb{R}\). A fortori, on aura donc \( \mathbb{Q} \subset \mathscr{C}_\mathbb{R} \)
+		\begin{proposition} \( \mathscr{C}_\mathbb{R} \) est un sous-corps de \(\mathbb{R}\). A fortiori, on aura donc \( \mathbb{Q} \subset \mathscr{C}_\mathbb{R} \)
 		\end{proposition}
 			\begin{proof}
 				On travaillera dans un repère orthonormé $(O, \vec{OI}, \vec{OJ})$
@@ -521,7 +526,7 @@
 							\end{array}
 							\right.
 							\]
-						Ce qui achève la proof. D'autre part, s'il existe une solution, elle sera bien, pour chaque coordonnée de l'intersection, de la forme \(k + l \sqrt{\delta_0}\), avec \(k, l, \delta_0 \in \mathbb{K}\).
+						Ce qui achève la preuve. D'autre part, s'il existe une solution, elle sera bien, pour chaque coordonnée de l'intersection, de la forme \(k + l \sqrt{\delta_0}\), avec \(k, l, \delta_0 \in \mathbb{K}\).
 						\item{Intersection de deux cercles} Si l'intersection existe, une obtient, par le même raisonnement, une même forme de solution.
 					\end{enumerate}
 					On a ainsi montré qu'une opération de construction revient à la construction d'une \emph{extension quadratique}.
@@ -616,75 +621,57 @@
         d'un angle, de la duplication du cube et ainsi que de la 
         quadrature du cercle.
         
-             \begin{corollaire}
-            
-               
-                On a les deux énoncés suivants :
-             \begin{enumerate}    
-                \item Si un nombre réel x est constructible alors x est algébrique. 
-                   C'est-à-dire qu'il existe un polynôme P \( \in \mathbb{Q}[X] 
-                   \) tel que \(P(x)=0.\)
-                \item De plus le degré algébrique de x est de la 
-                forme \( 2^{n},n \ge 0 \). C'est-à-dire que le plus 
-                petit degré des polynômes P \( \in \mathbb{Q}[X] \) 
-                vérifiant \(P(x)=0\) est une puissance de 2.
-             \end{enumerate}      
-             \end{corollaire}
+			\begin{proposition}
+			Si $x\in\mathbb{R}$ est constructible, il est algébrique, et son degré algébrique est de la forme : 
+			\[{}
+				2^{n}\;\;\mbox{ avec }\;n\in\mathbb{N}
+			\]
+			\end{proposition}
              
-             Le théorème qui suit permet de répondre au problème de la duplication du cube.
              
-             \begin{theorem}
+             \begin{proposition}
              
-             \(\sqrt[3]{2}\) n'est pas constructible.
+             $\sqrt[2]{2}$, indispensable pour dupliquer un cube de côté $1$, n'est pas constructible.
              
-             \end{theorem}
+             \end{proposition}
              
-             \begin{proof}
-             
-             \(\sqrt[3]{2}\) est une racine du polynôme 
-             \(P(X)=X^{3}-2\). Ce polynôme est unitaire et 
-             irréductible dans \(\mathbb{Q}[X]\), donc \(\sqrt[3]{2}\) 
-             est algébrique de degré 3. Ainsi son degré n'est pas de 
-             la forme \(2^{n}\). \(\sqrt[3]{2}\) n'est donc pas 
-             constructible.
-             
-             \end{proof}
-          
-          La proposition suivante révèle l'impossibilité de 
-          trissection d'un angle. Elle exhibe un angle qui ne peut pas 
-          être coupé en 3.
-          
-             \begin{theorem}
-             
-             Le nombre \(\frac{\pi}{3}\) est constructible mais ne peut 
-             pas être coupé en trois car \(\cos (\frac{\pi}{9})\) n'est pas 
-             constructible.
-          
-          
-          
-             \end{theorem}
-        
+			\begin{proof}
+			En effet, 
+				\(\sqrt[3]{2}\) est une racine du polynôme 
+				\(P(X)=X^{3}-2\). Ce polynôme est unitaire et 
+				irréductible dans \(\mathbb{Q}[X]\), donc \(\sqrt[3]{2}\) 
+				est algébrique de degré 3. Ainsi son degré n'est pas de 
+				la forme \(2^{n}\). \(\sqrt[3]{2}\) n'est donc pas 
+				constructible.
 
-
+			\end{proof}
 		
-		
-		% -----------------%
 
-% ----- PARTIE II ----- %
+% --------------------- --------- --------------------- 
+% --------------------- PARTIE II -------------------- 
+% --------------------- --------- --------------------- 
+
+
+
+
 \chapter{Constructibilité en origami}
 	Nous allons voir, au travers de cette partie, comment la formalisation mathématique des pratiques de l'origami donne naissance à une constructibilité étendue, qui sera ensuite utilisée lors de la conception des \emph{crease pattern} de la partie III.
-	
+
+% ----------------------------------------------------
 	\section{Définitions et axiomes}
-		Même si l'oppération du pliage nécessite 3 dimensions, on ne s'interessera qu'au résultat de cet opération : le pli. Ainsi on peut se placer dans le plan muni de sa base canonique, soit $\mathbb{R}^{2}$
+		Même si l'opération du pliage nécessite 3 dimensions, on ne s'interessera qu'au résultat de cet opération : le pli. Ainsi on peut se placer dans le plan muni de sa base canonique, soit $\mathbb{R}^{2}$
+	\subsection{Définitions}
 		\begin{definition}[Pli et point]
 			Un \emph{pli} est une droite de $\mathbb{R}^{2}$, donc en particulier un ensemble de points. Un \emph{point} est un couple de coordonnées réelles.
 		\end{definition}
 		\begin{definition}[Pliage]
 			On dit qu'un pli $P$ \emph{envoie} un point $p_{1}$ sur un autre point $p_{2}$ si $p_{2}$ est l'image de $p_{1}$ par la symétrie d'axe $P$. On dit qu'un pli $P$ \emph{envoie} un pli $P_{1}$ sur un pli $P_{2}$ si tout point de $P_{1}$ s'envoie par $P$ sur $P_{2}$
 		\end{definition}
+		
+	\subsection{Axiomes de Huzita}
 		Après avoir posé le support, il est nécessaire de se donner les outils de construction. Ici, pas de règle ni de compas, mais 7 axiomes correspondants aux opérations élémentaires réalisables. On se convaincra aisément que ces opérations sont en effet faisables avec une feuille réelle. \\
 		Ce jeu d'axiome n'as pas été montré minimal, et ne l'est peut-être pas. Il est en revanche intuitif, et donne un sens à des opérations naturelles dans la pratique de l'origami. 
-		\begin{axiome}
+		\begin{axiome}[1]
 			Étant donné deux points $p_{1}$ et $p_{2}$ distincts, il existe un unique pli qui passe par ces deux points.
 		\end{axiome}
 		
@@ -696,7 +683,7 @@
 		\end{figure}
 		
 		On peut ainsi construire les droites, comme avec une règle.
-		\begin{axiome}
+		\begin{axiome}[2]
 			Étant donné deux points $p_{1}$ et $p_{2}$ distincts, il existe un unique pli qui envoie $p_{1}$ sur $p_{2}$.
 		\end{axiome}
 		
@@ -708,7 +695,7 @@
 		\end{figure}
 		
 		Cette opération est complétement équivalente au tracage d'une médiatrice entre deux points.
-		\begin{axiome}
+		\begin{axiome}[3]
 			Étant donné deux plis $P_{1}$ et $P_{2}$ distincts, il existe un unique pli qui envoie $P_{1}$ sur $P_{2}$.
 		\end{axiome}
 		
@@ -720,7 +707,7 @@
 		\end{figure}
 		
 		Cette opération est complétement équivalente au tracage d'une bissectrice entre deux droites.
-		\begin{axiome}
+		\begin{axiome}[4]
 			Étant donné un point $p_{1}$ et un pli $P_{1}$, il existe un unique pli $P$ qui passe par $p_{1}$ et soit perpendiculaire à $P_{1}$
 		\end{axiome}
 		
@@ -731,7 +718,7 @@
 			\caption{Illustration de l'axiome 4}
 		\end{figure}
 		Cette opération est encore réalisable à la régle et au compas, moyennant la recherche de médiatrices.
-		\begin{axiome}
+		\begin{axiome}[5]
 			Étant donné deux points $p_{1}$ et $p_{2}$, et un pli $P_{1}$, il existe un pli $P$ qui envoie $p_{1}$ sur un point de $P_{1}$, en passant par $p_{2}$
 		\end{axiome}
 		\begin{figure}[h]
@@ -743,7 +730,7 @@
 		Cette opération correspond à la recherche d'une intersection entre un cercle et une droite. Il peut y avoir 0,1 ou 2 solutions.
 		
 		
-		\begin{axiome}
+		\begin{axiome}[6]
 			Étant donné deux points $p_{1}$ et $p_{2}$, et deux plis $P_{1}$ et $P_{2}$, il existe un pli $P$ qui envoie $p_{1}$ sur un point de $P_{1}$ et $p_{2}$ sur un point de $P_{2}$
 		\end{axiome}
 		\begin{figure}[h]
@@ -755,7 +742,7 @@
 		 C'est cette opération précise qui apporte un avantage au système axiomatique de l'origami. En effet on montrera par la suite qu'elle permet de résoudre des équations de degré 3.
 		
 		
-		\begin{axiome}
+		\begin{axiome}[7]
 			Étant donné un point $p_{1}$ et deux plis $P_{1}$ et $P_{2}$, il existe un pli qui envoie $p_{1}$ sur $P_{1}$, perpendiculairement à $P_{2}$
 		\end{axiome}
 		\begin{figure}[h]
@@ -764,12 +751,152 @@
 		    \end{center}
 			\caption{Illustration de l'axiome 7}
 		\end{figure}
+		
+
+% ----------------------------------------------------
+\section{Ensemble des nombres origami-constructibles}
+			Il est important de traduire concrètement en termes géométriques les axiomes énoncés. Contrairement aux constructions à la règle et au compas, l'origami se concentre plus sur les plis que sur les points.
+
 	
-	\section{Ensemble des nombres origami-constructibles}
+\subsection{Définitions et études des premiers axiomes}
+
+			\begin{definition}
+			Un point peut toujours être défini comme l'intersection de deux plis. En plus, si on se donne un ensemble initial de points appelés "points construits", les opérations autorisées sont les suivantes : 
+				\begin{enumerate}
+					\item Construction d'un pli passant par deux points construits
+					\item Construction de la médiatrice de deux points construits
+					\item Construction de la bissectrice de deux plis construits
+					\item Construction de la perpendiculaire à un pli construit passant par un point contruit.
+					\item Étant donné deux points construits $p_{1}$ et $p_{2}$, et un pli construit $P$, si il existe un point d'intersection entre $P$ et le cercle de centre $p_{1}$, passant par $p_{2}$, on peut construire la médiatrice entre $p_{1}$ et ce point d'intersection.
+					\item Étant donné deux points construits $p_{1}$ et $p_{2}$, et deux plis construits $P_{1}$ et $P_{2}$, on peut construire la tangente aux paraboles de foyer $p_{1}$ et $p_{2}$, de directrice $P_{1}$ et $P_{2}$
+					\item Étant donné un point construit, et deux plis construits $P_{1}$ et $P_{2}$, parmis l'ensemble des médiatrices entre le point construit et un point quelconque de $P_{1}$, on peut construire celle qui est perpendiculaire à $P_{2}$
+				\end{enumerate}
+			\end{definition}
+
+			\begin{definition}
+				On définit par récurrence la suite \((\mathcal{O}_i)_{i \in \mathbb{N}} \) :
+				\begin{itemize}
+					\item \(\mathcal{O}_0 = \{(0, 0), (1, 0)\}\)
+					\item \(\forall n \in \mathbb{N}, \mathcal{O}_{n+1} = A\cup \mathcal{O}_{n}\), avec \(A\) l'ensemble des points constructibles par opérations élémentaires à partir de \( \mathcal{O}_{n} \).
+				\end{itemize}
+			\end{definition}
+
+			\begin{definition}
+				On définit l'ensemble des points constructibles \(\mathcal{O} = \bigcup_{i \in \mathbb{N}} \mathcal{O}_i \) puis l'ensemble des réels constructibles \(\mathcal{O}_\mathbb{R}\) comme l'ensemble des abscisses des points de \( \mathcal{O} \).
+			\end{definition}
+
+			\begin{proposition}[Pseudo-équivalence Origami-Règle et compas]
+			Les opérations des cinqs premiers axiomes de l'origami sont équivalentes aux opérations à la règle et compas.
+			\end{proposition}
+			\begin{proof}
+			Montrons l'équivalence en construisant les axiomes de l'origami à la règle et au compas, et réciproquement.
+			\begin{enumerate}
+				\item De l'origami à la règle et au compas.
+				\begin{enumerate}
+					\item On peut immédiatement construire un point intersection de deux droites\slash plis en origami.
+					\item Si on se donne une droite et un cercle, défini par deux points, montrons que l'on peut construire en origami l'intersection.
+					Soit $A,B$ les points définissant le cercle, avec $B$ le centre et $D$ la droite. Par l'axiome 5, on peut se donner le pli qui envoie $A$ sur $D$ en passant par $B$, c'est à dire la médiatrice entre $A$ et le point cherché, et on note $E$ ce pli. Il suffit, par l'axiome 2, de prendre la perpendiculaire à $E$ passant par $B$, notée $F$,et son intersection avec $D$ nous donne le point cherché. En effet, si on note $X$ ce point, par propriété des médiatrices, $F$ est parralèle à $(BX)$, et comme $B$ est un point commun, les droites sont confondues.
+					\item Si on se donne deux cercles, soit 4 points $A,B,C,D$, avec $A$ et $C$ les centres, montrons que l'on peut construire en origami l'intersection.
+				\end{enumerate}
+				
+				On propose pour chaque axiome de l'origami une construction à la règle et au compas
+			\begin{enumerate}
+				\item{Premier axiome de Huzita :} \\
+					Cet axiome coïncide avec la définition d'une droite, et nous permet donc de décrire un pli origami comme une droite du plan.
+				\item{Deuxième axiome de Huzita :}\\
+					Cet axiome est équivalent à la construction d'une médiatrice entre deux points. Si l'on se donne un point $A$ et un point $B$ préalablement construits, il suffit de considérer la droite définie à partir des deux intersections du cercle de centre $A$ passant par $B$ et du cercle de centre $B$ passant par $A$.
+				\item{Troisième axiome de Huzita :}\\
+					Tout revient à construire une bissectrice étant donné deux droites non parallèles.
+					
+					Soit deux droites $\Delta_1$ et $\Delta_2$ définies respectivement à partir des points $A$ et $B$, et $C$ et $D$ préalablement construits. Soit $O$ l'intersection des deux droites. On définit $A'$ comme l'intersection de $\Delta_2$ avec le cercle de centre $O$ passant par $A$. La médiatrice du segment $[AA']$ correspond au pli construit par le troisième axiome de Huzita.
+				
+				\item{Quatrième axiome de Huzita :}\\
+					On se donne ici une droite $\Delta$ définie par les points $A$ et $B$ préalablement construits, et un point $M$, distinct de la droite. Considérons les intersections du cercle de centre $M$ passant par $A$ avec $\Delta$. S'il n'en existe qu'une, $A$, et alors le cercle est tangent à la droite, donc la droite $(AM)$ convient. Sinon, en notant $A'$ la seconde intersection, la médiatrice du segment $[AA']$ convient.
+				\item{Cinquième axiome de Huzita :}\\
+					Etant donné deux points $A$ et $B$ et une droite $\Delta$ définie par deux points $C$ et $D$, il suffit de considérer la médiatrice du segment défini par $B$ et l'intersection du cercle de centre $A$ passant par $B$ avec la droite $\Delta$.
+				\end{enumerate}
+			\end{enumerate}
+			\end{proof}
+
+\subsection{La spécificité de l'axiome 6}
+			
+			\begin{definition}[Parabole]
+				On se place dans un plan $P$. Soit $D$ une droite et $F$ un point n'appartenant pas à la droite. La parabole de foyer $F$ et de directrice $D$ est l'ensemble des points à égale distance de de $F$ et de $D$. Formellement, si pour $X \in P$, on note $H_{X}$ le projeté ortogonal de $X$ sur $D$, la parabole est exactement  
+				\[\{X\in P /\; XF = XH_{X}\}\]
+			\end{definition}
+			\begin{definition}[Tangente à une parabole]
+				Soit $\mathcal{P}$ une parabole de foyer $F$ et de directrice $D$. Soit $A$ un point de $\mathcal{P}$. La tangente en $A$ à la parabole est la bissectrice interieure de l'angle $\widehat{AFH_{A}}$.
+			\end{definition}
+			
+			\paragraph{Le problème de l'axiome 6}
+			Deux définitions, qui semblent proches, coexistentent, mais ont des conséquences différentes. La version forte de l'axiome est celle que nous avons énoncé. La version faible de l'axiome est le sujet de cette sous-partie, en voici l'énoncé :
+			
+			\begin{axiome}[6 - Version faible]
+			Étant donné deux points $p_{1}$ et $p_{2}$, et deux plis $P_{1}$ et $P_{2}$, tel que $p_{1}$ ne soit pas un point de $P_{1}$ et $p_{2}$ ne soit pas un pli de $P_{2}$, alors il existe un pli $P$ qui envoie $p_{1}$ sur un point de $P_{1}$ et $p_{2}$ sur un point de $P_{2}$
+			\end{axiome}
+			
+			Alors, on comprends que les couples $(p_{1},P_{1})$ et $(p_{2},P_{2})$ pourront servir à définir des paraboles, et c'est en effet le sujet de la proposition suivante : 
+			
+			\begin{proposition}
+				Soit deux points $p_{1},p_{2}$ et deux plis (droites) $P_{1},P_{2}$. On pose $\mathcal{P}_{1},\mathcal{P}_{2}$ les paraboles de foyer respectif $p_{1}$ et $p_{2}$, de directrice respective $P_{1}$ et $P_{2}$. Se donner le pli envoyant $p_{1}$ sur $P_{1}$ et $p_{2}$ sur $P_{2}$ par l'axiome 6 (version faible) est équivalent à chercher une droite qui soit tangente à la fois de $\mathcal{P}_{1}$ et $\mathcal{P}_{2}$
+			\end{proposition}
+			
+			\begin{proof}
+				La preuve se fait en deux temps:
+				\begin{enumerate}
+					\item Soit $\mathcal{P}$  une parabole de foyer $F$ et de directrice $D$. Montrons que les tangentes à $\mathcal{P}$ sont exactement les plis qui envoient $F$ sur $\mathcal{D}$. Pour $A$ un point quelconque, on notera $H_{A}$ le projeté orthogonal de $A$ sur $D$.
+					\begin{enumerate}
+						\item Soit $T$ une tangente à $\mathcal{P}$ en $A$. Le triangle $AFH_{A}$ est isocèle en $A$, et la bissectrice de l'angle directeur $\widehat{AFH_{A}}$. Or dans un triangle isocèle, la bissectrice de l'angle directeur est confondue avec la médiatrice de la base. Donc $T$ est la médiatrice de $F$ et $H_{A}$, donc vue comme pli, elle envoie $F$ sur $H_{A}$, qui est bien un point de $\mathcal{D}$
+						
+						\item Soit $T$ un pli qui envoie $F$ sur un point de $\mathcal{D}$, noté $A$. C'est en particulier une médiatrice de $F$ et $A$. Considérons la perpendiculaire à $\mathcal{D}$ passant par $A$, notée $\mathcal{E}$. On remarque que $\mathcal{D}$ et $\mathcal{E}$ ne sont jamais parralèles, sans quoi $F$ appartiendrait à $\mathcal{D}$, ce qui n'est pas le cas, par hypothèse. Donc $\mathcal{D}$ et $\mathcal{E}$ admettent un point d'intersection, que l'on note $B$. Ce point est à même distance de $A$ et de $F$, et même, comme il appartient à $\mathcal{E}$, il est à la même distance de $\mathcal{D}$ et de $F$, donc appartient à $\mathcal{P}$. Par propriété des triangles isocèles, $T$ est bien la médiatrice interieure de $FBA$, donc une tangente à $\mathcal{P}$ en $B$.
+					\end{enumerate}
+					
+					\item Ainsi, on a directement l'equivalence entre trouver un pli qui envoie $p_{1}$ sur $P_{1}$ et $p_{2}$, sur $P_{2}$, qui sera en effet une tangente commune à $\mathcal{P}_{1}$ et $\mathcal{P}_{2}$, et se donner réciproquement une tangente commune, qui enverra $p_{1}$ sur $P_{1}$ et $p_{2}$, sur $P_{2}$.
+				\end{enumerate}
+			\end{proof}
+		Par la suite, on verra que utiliser la version forte de l'axiome 6 est équivalent à utiliser conjointement l'axiome 7 et la version faible de l'axiome 6. Mais, sachant que l'équivalence algébrique est alors bien plus rapide, on comprends l'utilité de cette approche.
+	
+\subsection{La redondance de l'axiome 7}
+		
+		\paragraph{} En continuant à progresser dans les caractéristiques du système axiomatique de Huzita, on en vient à remarquer que ce système est redondant, en l'occurence, que l'axiome 7 peut être construit en utilisant les autres.
+		
+		\begin{proposition}[Construction de l'axiome 7]
+			Étant donné un point $p_{1}$ et deux plis $P_{1}$ et $P_{2}$, il est possible de construire un pli qui envoie $p_{1}$ sur $P_{1}$, perpendiculairement à $P_{2}$, en utilisant les 4 premiers axiomes seulement
+		\end{proposition}
+		
+		
+		\begin{proof}
+			Plaçons nous d'abord dans les condititions de faisabilité de l'axiome 7, c'est à dire quand $P_{1}$ et $P_{2}$ ne sont pas parralèles : en effet, les plis perpendiculaires à $P_{2}$ envoient nécessairement $p_{1}$ sur une parralèle de $P_{2}$, et en excluant le cas dégénéré où $p_{1}$ est déjà sur $P_{1}$, aucun pli ne peut convenir. On suppose ainsi que $P_{1}$ et $P_{2}$ ne sont pas parralèles. Voici le processus de construction : 
+			\begin{itemize}
+				\item Construire (axiome 4) la perpendiculaire à $P_{2}$ passant par $p_{1}$, notée $A$.
+				\item Construire (axiome 4) la perpendiculaire à $A$ passant par $p_{1}$, notée $B$. Cette droite est parallèle à $P_{2}$, car $A$ est perpendiculaire à $A$ et $P_{2}$.
+				\item Ainsi il existe un point d'intersection entre $B$ et $P_{1}$, noté $\delta$. Construire (axiome 2) la médiatrice entre $p_{1}$ et $\delta$, notée $\Delta$.
+			\end{itemize}
+			Comme perpendiculaire à $B$, $\Delta$ est perpendiculaire aussi à $P_{2}$. De plus, comme médiatrice, $\Delta$ envoie $p_{1}$ sur $\delta$, qui est un point de $P_{1}$, donc convient comme pli pour l'axiome 7.
+		\end{proof}
+		
+		On pourrait alors s'interroger sur l'utilité de cet axiome, sachant la simplicité de son "émulation" en utilisant les autres axiomes. Il y a deux aspects au problème. Premièrement, cet axiome, comme tous les autres, a pour vocation de représenter géométriquement une construction qu'il est naturel de faire, feuille en main. L'oppération correspondante est certe redondante, mais peut-être faite en "une fois" lorsque l'on manipule la feuille directement, et, en cela, l'axiome représente fidèlement la réalité du pliage.\\
+		Deuxièmement, l'axiome 7 permet de traiter un cas particulier de l'axiome 6, où des deux points, par exemple $p_{1}$, est déjà sur la droite sur laquelle il doit s'envoyer, ici $P_{1}$ du coup. Le pli sera alors perpendiculaire à $P_{1}$, envoyant $p_{2}$ sur $P_{2}$. On retrouve l'axiome 7. Le dernier cas dégénéré (points et droites confondues) pouvant être traité de la même façon avec les 5 premiers axiomes, on en déduit le corrolaire suivant :
+		
+		\begin{corollaire}
+			La structure axiomatique de Huzita est équivalente à la structure restreinte aux 6 premiers axiomes, avec le 6 axiome dans sa version forte. Cette structure est aussi équivalente à la structure complète, mais avec le 6 axiome dans sa version faible.
+		\end{corollaire}
+		
+% ----------------------------------------------------
+	\section{Extension du théorème de Wantzel}
+	
+	\begin{proposition}[Equivalence algèbre-géométrie]
+				Les trois opérations élémentaires construisent chacune les racines réelles d'un polynôme de \(\mathbb{K}_3[X]\) dont les coefficients dépendent des points construits au préalable qui servent de base, avec $\mathbb{K}$ le plus petit sous-corps de $\mathcal{O}_\mathbb{R}$ contenant les coordonnées des points construits au préalable.
+	\end{proposition}
+	
+	\begin{proof}
+		à faire...
+	\end{proof}
+	
 	
 	\subsection{Extension du théorème de Wantzel}
 		\begin{theorem}
-			Un réel \( x \) est origami-constructible si et seulement si il existe une suite finie d'extensions qui sont chacune soit \emph{quadratique} soit \emph{cubique},
+			Un réel \( x \) est origami-constructible si et seulement si il existe une suite finie d'extensions qui chacune soit au plus \emph{cubique},
 					\[
 					\mathbb{Q} = K_0 \subset K_1 \subset \dots \subset K_r
 					\]
@@ -779,15 +906,135 @@
 	\subsection{Exemples célèbres revisités}
 		\subsubsection{La trisection d'Abe}
 		\subsubsection{La duplication du cube}
-	
+
+% ----------------------------------------------------
 	\section{Hyperorigami et nombres hyper-constructibles}
 	
 
-% ----- PARTIE III ----- %
-\chapter{Le \emph{Crease Pattern} et la faisabilité}
+
+
+
+
+% --------------------- ---------- --------------------- 
+% --------------------- PARTIE III -------------------- 
+% --------------------- ---------- --------------------- 
+
+
+
+
+	
+\chapter{Le \emph{crease pattern} et la faisabilité}
+
+Après avoir réalisé le modèle, on déplie la feuille. On peut alors 
+observer différents plis qui constituent le canevas de 
+"l'origami" (\emph{crease pattern} en anglais). Seuls les plis finaux 
+sont à considérer dans l'élaboration du 
+canevas, c'est-à-dire ceux qui interviennent dans la structure finale 
+du modèle. 
+
+
+% ----------------------------------------------------
 	\section{Définitions et exemples}
-	\section{De l'origami au \emph{Crease Pattern}: les conditions nécessaires}
-	\section{Du \emph{Crease Pattern} à l'origami : des conditions suffisantes ?}
+ 
+    \begin{definition} 
+      
+      Le canevas de pli est la représentation du carré de départ ainsi que l'ensemble des plis 
+      servant à la base départ du modèle.
+      
+    \end{definition}
+    
+    Par la suite, il sera important de considérer trois types de plis.
+    
+      \begin{definition}
+      
+        Après dépliage de la feuille, on peut observer trois 
+        catégories de plis:
+        
+        \begin{enumerate}
+        
+          \item Les plis \emph{montagnes} qui sont les plis correspondant à 
+          une arrête. Il seront en rouge.
+          \item Les plis \emph{vallées} qui correspondent aux creux. Ils 
+          seront en bleu.
+          \item Les plis intermédiaires intervenant lors des étapes 
+          précedentes de la construction. Ils seront laissés 
+          volontairement sans couleur.
+        
+        \end{enumerate}
+      
+      \end{definition}
+    
+    
+    
+
+% ----------------------------------------------------
+  \section{De l'origami au \emph{crease pattern} : les conditions 
+  nécessaires}  
+  
+    \paragraph{} Il serait faux de penser qu’avec n’importe quel schéma de plis bleus et rouges on pourrait obtenir un canevas de figure. C’est pour cela que des théorèmes vont permettre dans un premier de temps de vérifier la validité du canevas obtenu.
+  
+    
+    
+    \paragraph{} Dans cette partie, le nombre de traits rouges du canevas sera noté \(\mathscr{N}_{R}\) et le nombre de traits bleus sera noté \(\mathscr{N}_{B}\).
+    
+    \subsection{Théorème de Meakawa}
+    
+      \begin{theorem}
+        Dans un cannevas de plis, les nombres de traits rouges et  de traits bleus se rencontrant en un point intérieur à la feuille doivent vérifer : \(|\mathscr{N}_{R}-\mathscr{N}_{B}|=2\)
+       
+      \end{theorem}
+    
+      \begin{proof}
+      \end{proof}
+    
+      Cette propriété de pliage énonce une condition absolument nécessaire pour vérifier si un canevas est juste ou non.
+      Découle de ce théorème trois propriétés propres aux plis du canevas.
+      
+    \subsection{Conséquences du Théorème de Meakawa}
+    
+      \begin{proposition}
+        
+        Les zone délimitées par les plis \emph{montagnes} ou \emph{vallées} sont coloriables de deux couleurs sans que deux zones voisines n’aient jamais la même couleur.
+      
+      \end{proposition} 
+      
+      \begin{proof}
+      \end{proof}
+      
+      
+      \begin{proposition}
+      
+        Tout sommet du graphe dessiné par les plis \emph{vallées} et 
+        les plis \emph{montagnes} vérifient le Théorème de Meakawa.
+      
+      \end{proposition}
+      
+      \begin{proof}
+      \end{proof}
+      
+      \begin{remarque}
+      
+      Tout canevas est impossible si ces propriétés ne sont pas 
+      vérifiées. Cependant cela n'est pas suffisant. En effet tout 
+      canevas qui possède ces propriétés n'est pas pour autant 
+      pliable selon ses plis.
+      
+      
+      \end{remarque}
+      
+      \begin{theorem}[Théorème de Kawasaki]
+      
+      \end{theorem}
+    
+    
+
+
+% --------------------- --------- --------------------- 
+% --------------------- PARTIE VI -------------------- 
+% --------------------- --------- --------------------- 
+
+
+
 
 \chapter{La conception assistée : étude du logiciel TreeMaker}
 
