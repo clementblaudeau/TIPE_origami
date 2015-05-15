@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,french,draft]{report}
+\documentclass[a4paper,12pt,french]{report}
 \usepackage{babel} 
 \usepackage[T1]{fontenc} 
 \usepackage[utf8]{inputenc} 
@@ -12,20 +12,18 @@
 \usepackage{graphicx}
 \usepackage{boiboites}
 \geometry{hmargin=2.5cm,vmargin=2cm}
+
+% ------
+
 %\newtheorem{axiome}{Axiome}[section]
 \newtheorem{lemma}{Lemme}[section]
-%\newtheorem{proposition}{Proposition}[section]
+\newtheorem{proposition}{Proposition}[section]
 %\newtheorem{theorem}{Théorème}[section]
 \newtheorem{definition}{Définition}[section]
 \newtheorem{exemple}{Éxemple}[section]
 \newtheorem{corollaire}{Corollaire}[section]
 
-% ------
-
-\definecolor{violet}{rgb}{0.5,0,0.5}
-\definecolor{orange}{rgb}{0.9,0.4,0}
-
-\newboxedtheorem[boxcolor=black,titleboxcolor = black,titlebackground=blue!20,titlecolor = black]{proposition}{Proposition}{subsection}
+%\newboxedtheorem[boxcolor=black,titleboxcolor = black,titlebackground=blue!20,titlecolor = black]{proposition}{Proposition}{subsection}
 \newboxedtheorem[boxcolor=red,titleboxcolor = red,titlebackground=red!20,titlecolor = black]{axiome}{Axiome}{}
 \newboxedtheorem[boxcolor=blue,titleboxcolor = blue,titlebackground=blue!20,titlecolor = black]{theorem}{Théorème}{}
 
@@ -580,60 +578,63 @@
 		     \end{corollaire}   
 		     
 		     \begin{proof}
-		     Soit x un nombre constructible. Par le théorème de Wantzel, il 
-		     existe des extensions quadratiques \( \mathbb{Q} = K_{0} 
-		     \subset K_{1} \subset \dots \subset K_{r} \) telles que x 
-		     \( \in K_{r} \). Donc x appartient à une extension de \( 
-		     \mathbb{Q} \) de degré fini. Ainsi par la proposition 
-		     1.1.2, x est algébrique. On sait de plus que \( 
-		     [K_{i}:K_{i+1}] = 2 \) donc par la proposition sur 
-		     la relation de Chasles sur les degrés \( 
+		     Soit $x$ un nombre constructible. Par le théorème de Wantzel, il 
+		     existe des extensions quadratiques \[ \mathbb{Q} = K_{0} 
+		     \subset K_{1} \subset \dots \subset K_{r} \] telles que
+		     \(x \in K_{r} \). Donc x appartient à une extension de \( 
+		     \mathbb{Q} \) de degré fini. Or on a montré que les éléments d'extensions finies sont algébriques, donc $x$ est algébrique. On sait de plus que 
+		     \[ 
+		     \forall i \in \llbracket 1, r-1 \rrbracket, \;[K_{i}:K_{i+1}] = 2 
+		     \]
+		     Donc par la proposition sur 
+		     la relation de Chasles sur les degrés \[
 		     [\mathbb{Q}:K_{r}] 
-		     = 2^{r} \). Il reste à déduire le degré de \( 
+		     = 2^{r} \]
+		     Il reste à déduire le degré de \( 
 		     [\mathbb{Q}(x):\mathbb{Q}] \). Comme \( \mathbb{Q}(x) \subset K_{r} 
 		     \), nous avons toujours par la proposition sur la relation 
-		     de Chasles du degré que \( [K{r}:\mathbb{Q}(x)]\times 
+		     de Chasles du degré que \[ [K{r}:\mathbb{Q}(x)]\times 
 		     [\mathbb{Q}(x):\mathbb{Q}] = [K_{r}:\mathbb{Q}] = 2^{r}. 
-		     \)Donc\( [\mathbb{Q}(x):\mathbb{Q}] \) divise \(2^{r}\) et est donc 
+		     \]
+		     Donc \([\mathbb{Q}(x):\mathbb{Q}] \) divise \(2^{r}\) et est donc 
 		     de la forme \(2^{n}\).
 		     \end{proof} 
 		     
-		     \begin{corollaire}
-		     
-		     \(\mathscr{C}_{\mathbb{R}} \) est le plus petit sous-corps 
-		     de \(\mathbb{R}\) stable par racine carréee, c'est-à-dire 
-		     telles que :
-		     \begin{enumerate}
-		      \item \( (x \in \mathscr{C}_{\mathbb{R}}\) et \(x \geq 0) 
-		      \implies \sqrt{x} \in \mathscr{C}_{\mathbb{R}}.\)
-		      \item Si K est un autre sous-corps de \(\mathbb{R}\) 
-		      stable par racine carrée alors \(\mathscr{C}_{\mathbb{R}} 
-		      \subset K.\)
-		      
-		     \end{enumerate}
-		     
-		     \end{corollaire}
+		\begin{corollaire}
+			 \(\mathscr{C}_{\mathbb{R}} \) est le plus petit sous-corps 
+			 de \(\mathbb{R}\) stable par racine carréee, c'est-à-dire 
+			 tel que :
+			 \begin{enumerate}
+			  \item \( (x \in \mathscr{C}_{\mathbb{R}}\) et \(x \geq 0) 
+			  \implies \sqrt{x} \in \mathscr{C}_{\mathbb{R}}.\)
+			  \item Si K est un autre sous-corps de \(\mathbb{R}\) 
+			  stable par racine carrée alors \(\mathscr{C}_{\mathbb{R}} 
+			  \subset K.\)
+			 \end{enumerate}
+		\end{corollaire}
+		\begin{proof}
+			A faire...
+		\end{proof}
 		
-		
-		\subsection{Exemples célèbres}
-		
-        On peut désormais répondre aux problèmes de la trissection 
-        d'un angle, de la duplication du cube et ainsi que de la 
-        quadrature du cercle.
-        
 			\begin{proposition}
 			Si $x\in\mathbb{R}$ est constructible, il est algébrique, et son degré algébrique est de la forme : 
 			\[{}
 				2^{n}\;\;\mbox{ avec }\;n\in\mathbb{N}
 			\]
 			\end{proposition}
-             
-             
-             \begin{proposition}
-             
-             $\sqrt[2]{2}$, indispensable pour dupliquer un cube de côté $1$, n'est pas constructible.
-             
-             \end{proposition}
+             \begin{proof}
+	             A faire..
+			 \end{proof}
+	
+	\subsection{Exemples célèbres}
+
+		On peut désormais répondre aux problèmes de la trissection 
+		d'un angle et de la duplication du cube.
+
+	
+	\begin{proposition}
+		Il n'est pas possible de dupliquer le cube - c'est à dire construire la racine cubique de $1$ - à la règle et au compas.
+	\end{proposition}
              
 			\begin{proof}
 			En effet, 
@@ -643,8 +644,26 @@
 				est algébrique de degré 3. Ainsi son degré n'est pas de 
 				la forme \(2^{n}\). \(\sqrt[3]{2}\) n'est donc pas 
 				constructible.
-
 			\end{proof}
+			
+	\begin{proposition}
+			Il n'est pas possible de trisecter tous les angles à la règle et au compas.
+	\end{proposition}
+			
+			\begin{proof}
+				Montrons que l'on ne peux pas trisecter l'angle $\frac{\pi}{3}$.
+				Trisecter cet angle permet de construire le point $\cos (\frac{\pi}{9})$, en ayant comme points de base $(\cos (\frac{\pi}{3}),0),(0,0)$ et $(1,0)$.
+				Or, 
+				\[{}
+				\begin{aligned}
+					\cos \left(\frac{\pi}{3}\right) &= \cos \left(3\frac{\pi}{9}\right) \\
+						&= \cos\left(\frac{\pi}{9}\right)\cos\left(2\times\frac{\pi}{9}\right) - \sin\left(\frac{\pi}{9}\right)\sin\left(2\times\frac{\pi}{9}\right) \\
+						&= 4\cos^{3}\left(\frac{\pi}{9}\right) - 3\cos\left(\frac{\pi}{9}\right)
+				\end{aligned}
+				\]
+				Comme le polynôme $3X^{3}-4X-\cos\left(\frac{\pi}{3}\right)$ nécessite une extension cubique (le degré algébrique de la solution n'est pas de la forme $2^{n}$), il n'est pas possible de construire $\cos\left(\frac{\pi}{9}\right)$ à la règle et au compas, donc, de trisecter l'angle.
+			\end{proof}
+			
 		
 
 % --------------------- --------- --------------------- 
@@ -676,7 +695,7 @@
 		\end{axiome}
 		
 		\begin{figure}
-		    \begin{center}[h]
+		    \begin{center}
 			\includegraphics[height=130px]{media/Ax1.eps}
 		    \end{center}
 			\caption{Illustration de l'axiome 1}
@@ -688,7 +707,7 @@
 		\end{axiome}
 		
 		\begin{figure}
-		    \begin{center}[h]
+		    \begin{center}
 			\includegraphics[height=130px]{media/Ax2.eps}
 		    \end{center}
 			\caption{Illustration de l'axiome 2}
@@ -700,7 +719,7 @@
 		\end{axiome}
 		
 		\begin{figure}
-		    \begin{center}[h]
+		    \begin{center}
 			\includegraphics[height=130px]{media/Ax3.eps}
 		    \end{center}
 			\caption{Illustration de l'axiome 3}
@@ -712,7 +731,7 @@
 		\end{axiome}
 		
 		\begin{figure}
-		    \begin{center}[h]
+		    \begin{center}
 			\includegraphics[height=130px]{media/Ax4.eps}
 		    \end{center}
 			\caption{Illustration de l'axiome 4}
@@ -721,7 +740,7 @@
 		\begin{axiome}[5]
 			Étant donné deux points $p_{1}$ et $p_{2}$, et un pli $P_{1}$, il existe un pli $P$ qui envoie $p_{1}$ sur un point de $P_{1}$, en passant par $p_{2}$
 		\end{axiome}
-		\begin{figure}[h]
+		\begin{figure}
 		    \begin{center}
 			\includegraphics[height=130px]{media/Ax5.eps}
 		    \end{center}
@@ -733,7 +752,7 @@
 		\begin{axiome}[6]
 			Étant donné deux points $p_{1}$ et $p_{2}$, et deux plis $P_{1}$ et $P_{2}$, il existe un pli $P$ qui envoie $p_{1}$ sur un point de $P_{1}$ et $p_{2}$ sur un point de $P_{2}$
 		\end{axiome}
-		\begin{figure}[h]
+		\begin{figure}
 		    \begin{center}
 			\includegraphics[height=130px]{media/Ax6.eps}
 		    \end{center}
@@ -745,7 +764,7 @@
 		\begin{axiome}[7]
 			Étant donné un point $p_{1}$ et deux plis $P_{1}$ et $P_{2}$, il existe un pli qui envoie $p_{1}$ sur $P_{1}$, perpendiculairement à $P_{2}$
 		\end{axiome}
-		\begin{figure}[h]
+		\begin{figure}
 		    \begin{center}
 			\includegraphics[height=130px]{media/Ax7.eps}
 		    \end{center}
@@ -772,6 +791,9 @@
 					\item Étant donné un point construit, et deux plis construits $P_{1}$ et $P_{2}$, parmis l'ensemble des médiatrices entre le point construit et un point quelconque de $P_{1}$, on peut construire celle qui est perpendiculaire à $P_{2}$
 				\end{enumerate}
 			\end{definition}
+			
+			\paragraph{Remarque}
+			L'énoncé de l'axiome 6 peut parraître obscur, il va être étudié en détail par la suite.
 
 			\begin{definition}
 				On définit par récurrence la suite \((\mathcal{O}_i)_{i \in \mathbb{N}} \) :
@@ -824,8 +846,17 @@
 				On se place dans un plan $P$. Soit $D$ une droite et $F$ un point n'appartenant pas à la droite. La parabole de foyer $F$ et de directrice $D$ est l'ensemble des points à égale distance de de $F$ et de $D$. Formellement, si pour $X \in P$, on note $H_{X}$ le projeté ortogonal de $X$ sur $D$, la parabole est exactement  
 				\[\{X\in P /\; XF = XH_{X}\}\]
 			\end{definition}
+			
+			\begin{figure}
+			\begin{center}
+				\includegraphics[height=130px]{media/parabole.eps}
+			\end{center}
+			\caption{Un exemple de parabole}
+			\end{figure}
+			
 			\begin{definition}[Tangente à une parabole]
-				Soit $\mathcal{P}$ une parabole de foyer $F$ et de directrice $D$. Soit $A$ un point de $\mathcal{P}$. La tangente en $A$ à la parabole est la bissectrice interieure de l'angle $\widehat{AFH_{A}}$.
+				Soit $\mathcal{P}$ une parabole de foyer $F$ et de directrice $D$. Soit $X$ un point de $\mathcal{P}$. La tangente en $X$ à la parabole est la bissectrice interieure de l'angle $\widehat{FXH_{X}}$.\\
+				Par les propriétés des triangles isocèles, c'est aussi la médiatrice de $FH_{X}$
 			\end{definition}
 			
 			\paragraph{Le problème de l'axiome 6}
@@ -875,11 +906,11 @@
 			Comme perpendiculaire à $B$, $\Delta$ est perpendiculaire aussi à $P_{2}$. De plus, comme médiatrice, $\Delta$ envoie $p_{1}$ sur $\delta$, qui est un point de $P_{1}$, donc convient comme pli pour l'axiome 7.
 		\end{proof}
 		
-		On pourrait alors s'interroger sur l'utilité de cet axiome, sachant la simplicité de son "émulation" en utilisant les autres axiomes. Il y a deux aspects au problème. Premièrement, cet axiome, comme tous les autres, a pour vocation de représenter géométriquement une construction qu'il est naturel de faire, feuille en main. L'oppération correspondante est certe redondante, mais peut-être faite en "une fois" lorsque l'on manipule la feuille directement, et, en cela, l'axiome représente fidèlement la réalité du pliage.\\
+		On pourrait alors s'interroger sur l'utilité de cet axiome, sachant la simplicité de son "émulation" en utilisant les autres axiomes. Il y a deux aspects au problème. Premièrement, cet axiome, comme tous les autres, a pour vocation de représenter géométriquement une construction qu'il est naturel de faire, feuille en main. L'opération correspondante est certe redondante, mais peut-être faite en "une fois" lorsque l'on manipule la feuille directement, et, en cela, l'axiome représente fidèlement la réalité du pliage.\\
 		Deuxièmement, l'axiome 7 permet de traiter un cas particulier de l'axiome 6, où des deux points, par exemple $p_{1}$, est déjà sur la droite sur laquelle il doit s'envoyer, ici $P_{1}$ du coup. Le pli sera alors perpendiculaire à $P_{1}$, envoyant $p_{2}$ sur $P_{2}$. On retrouve l'axiome 7. Le dernier cas dégénéré (points et droites confondues) pouvant être traité de la même façon avec les 5 premiers axiomes, on en déduit le corrolaire suivant :
 		
 		\begin{corollaire}
-			La structure axiomatique de Huzita est équivalente à la structure restreinte aux 6 premiers axiomes, avec le 6 axiome dans sa version forte. Cette structure est aussi équivalente à la structure complète, mais avec le 6 axiome dans sa version faible.
+			La structure axiomatique de Huzita est équivalente à la structure restreinte aux 6 premiers axiomes, avec le 6$^{\;e}$ axiome dans sa version faible.
 		\end{corollaire}
 		
 % ----------------------------------------------------
@@ -904,7 +935,47 @@
 		\end{theorem}
 	
 	\subsection{Exemples célèbres revisités}
+	
 		\subsubsection{La trisection d'Abe}
+		On propose ici la construction du tiers d'un angle quelconque. On se place dans le repère othonormé direct, et l'angle à trisecter est défini par l'axe des abscisses et une droite $\Delta$. On note $\alpha$ l'angle. On se donne en plus pour base le plis de l'axe des ordonnées et les points $(0,0),(0,1),(1,0)$.
+		\begin{enumerate}
+			\item On note $A = (0,0)$ et $C = (0,1)$. On construit $B = (0,\frac{1}{2})$ en prenant la médiatrice.
+			\item On trace les parallèles à l'axe des abscisses passant par $B$ et $C$, que l'on note $\Theta_{B},\Theta_{C}$.
+			\item Par l'axiome 6, on se donne le pli $\Gamma$ qui envoie $C$ sur $\Delta$ et $A$ sur $\Theta_{B}$. On note $X$ son intersection avec l'axe des abscisses.
+			\item On considère les points $A'$ et $B'$, image de $A$ et $B$ par $\Gamma$, et les droites $\Delta_{A} = (AA')$ et $\Delta_{B} = (AB')$
+		\end{enumerate}
+		Alors ces droites trisectent l'angle.
+		
+		\begin{theorem}[Trisection d'Abe]
+			Le processus de construction d'Abe permet de trisecter un angle quelconque.
+		\end{theorem}
+		
+		
+			\begin{center}
+				\includegraphics[height=200px]{media/abetrisection.eps}
+			\end{center}
+		
+		\begin{proof}
+			On reprends le processus et les points posés.
+			\begin{itemize}
+				\item Par construction, $A'$ appartient à la médiatrice entre $A$ et $C$, donc on a :
+				\(
+					A'A = A'C
+				\)
+				 et le triangle $AA'C$ est isocèle en $A'$. De plus $B$ est le milieu de $AC$.
+				\item De même, son image par le pli $\Gamma$, le triangle $AA'C'$ est isocèle en $A$, et $B'$ est le milieu de $A'C'$. 
+				\item Ainsi la droite $\Delta_{B}$, qui est une médiane du triangle $AA'C'$, est aussi une bissectrice de l'angle $\widehat{C'AA'}$. Notons \[\beta = \widehat{C'AB'} = \widehat{B'AA'}\]
+				\item Comme angle à la base d'un triangle isocèle, on a $\widehat{C'A'A} = 90^{\circ} - \beta $.
+				\item Comme image par $\Gamma$ d'un angle droit, on a $\widehat{C'A'X} = 90^{\circ}$, donc $\widehat{AA'X} = \beta$. 
+				\item De plus, $\Gamma$ est médiatrice de $A$ et $A'$, donc $AA'X$ est isocèle car $X\in\Gamma$.
+			\end{itemize}
+			Ainsi, 
+			\[{}
+			\alpha = 3 \times \beta{}
+			\]
+		\end{proof}
+		
+		
 		\subsubsection{La duplication du cube}
 
 % ----------------------------------------------------
@@ -968,64 +1039,40 @@ du modèle.
     
 
 % ----------------------------------------------------
-  \section{De l'origami au \emph{crease pattern} : les conditions 
-  nécessaires}  
-  
-    \paragraph{} Il serait faux de penser qu’avec n’importe quel schéma de plis bleus et rouges on pourrait obtenir un canevas de figure. C’est pour cela que des théorèmes vont permettre dans un premier de temps de vérifier la validité du canevas obtenu.
-  
-    
-    
-    \paragraph{} Dans cette partie, le nombre de traits rouges du canevas sera noté \(\mathscr{N}_{R}\) et le nombre de traits bleus sera noté \(\mathscr{N}_{B}\).
-    
-    \subsection{Théorème de Meakawa}
-    
-      \begin{theorem}
-        Dans un cannevas de plis, les nombres de traits rouges et  de traits bleus se rencontrant en un point intérieur à la feuille doivent vérifer : \(|\mathscr{N}_{R}-\mathscr{N}_{B}|=2\)
-       
-      \end{theorem}
-    
-      \begin{proof}
-      \end{proof}
-    
+		\section{De l'origami au \emph{crease pattern} : les conditions 
+		nécessaires}  
+
+		\paragraph{} Il serait faux de penser qu’avec n’importe quel schéma de plis bleus et rouges on pourrait obtenir un canevas de figure. C’est pour cela que des théorèmes vont permettre dans un premier de temps de vérifier la validité du canevas obtenu.
+
+		\paragraph{} Dans cette partie, le nombre de traits rouges du canevas sera noté \( \mathscr{N}_{R}\) et le nombre de traits bleus sera noté \(\mathscr{N}_{B}\).
+
+		\subsection{Théorème de Meakawa}
+
+		\begin{theorem}
+			Dans un cannevas de plis, les nombres de traits rouges et  de traits bleus se rencontrant en un point intérieur à la feuille doivent vérifer : \(|\mathscr{N}_{R}-\mathscr{N}_{B}|=2\)
+		\end{theorem}
+      
       Cette propriété de pliage énonce une condition absolument nécessaire pour vérifier si un canevas est juste ou non.
       Découle de ce théorème trois propriétés propres aux plis du canevas.
       
-    \subsection{Conséquences du Théorème de Meakawa}
-    
-      \begin{proposition}
-        
-        Les zone délimitées par les plis \emph{montagnes} ou \emph{vallées} sont coloriables de deux couleurs sans que deux zones voisines n’aient jamais la même couleur.
+		\subsection{Conséquences du Théorème de Meakawa}
+
+		\begin{proposition}
+			Les zone délimitées par les plis \emph{montagnes} ou \emph{vallées} sont coloriables de deux couleurs sans que deux zones voisines n’aient jamais la même couleur.
+		\end{proposition} 
+		\begin{proposition}
+			Tout sommet du graphe dessiné par les plis \emph{vallées} et 
+			les plis \emph{montagnes} vérifient le Théorème de Meakawa.
+		\end{proposition}
+
+		\paragraph{Remarque}
+		Tout canevas est impossible si ces propriétés ne sont pas 
+		vérifiées. Cependant cela n'est pas suffisant. En effet tout 
+		canevas qui possède ces propriétés n'est pas pour autant 
+		pliable selon ses plis.
+
       
-      \end{proposition} 
-      
-      \begin{proof}
-      \end{proof}
-      
-      
-      \begin{proposition}
-      
-        Tout sommet du graphe dessiné par les plis \emph{vallées} et 
-        les plis \emph{montagnes} vérifient le Théorème de Meakawa.
-      
-      \end{proposition}
-      
-      \begin{proof}
-      \end{proof}
-      
-      \begin{remarque}
-      
-      Tout canevas est impossible si ces propriétés ne sont pas 
-      vérifiées. Cependant cela n'est pas suffisant. En effet tout 
-      canevas qui possède ces propriétés n'est pas pour autant 
-      pliable selon ses plis.
-      
-      
-      \end{remarque}
-      
-      \begin{theorem}[Théorème de Kawasaki]
-      
-      \end{theorem}
-    
+
     
 
 
