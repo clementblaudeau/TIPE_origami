@@ -573,9 +573,12 @@
 			\end{proof}
 		La conséquence la plus importante du théorème de Wantzel est donnée par l'énoncé suivant. C'est celui là que l'on utilisera dans la pratique.
 			
-		    \begin{corollaire}
-		     Tout nombre réel constructible est un nombre algébrique dont le degré algébrique est de la forme \( 2^{n}, n\geq 0 \).
-		     \end{corollaire}   
+			\begin{proposition}
+			Si $x\in\mathbb{R}$ est constructible, il est algébrique, et son degré algébrique est de la forme : 
+			\[{}
+				2^{n}\;\;\mbox{ avec }\;n\in\mathbb{N}
+			\]
+			\end{proposition} 
 		     
 		     \begin{proof}
 		     Soit $x$ un nombre constructible. Par le théorème de Wantzel, il 
@@ -616,15 +619,6 @@
 			A faire...
 		\end{proof}
 		
-			\begin{proposition}
-			Si $x\in\mathbb{R}$ est constructible, il est algébrique, et son degré algébrique est de la forme : 
-			\[{}
-				2^{n}\;\;\mbox{ avec }\;n\in\mathbb{N}
-			\]
-			\end{proposition}
-             \begin{proof}
-	             A faire..
-			 \end{proof}
 	
 	\subsection{Exemples célèbres}
 
@@ -646,22 +640,13 @@
 				constructible.
 			\end{proof}
 			
+	
 	\begin{proposition}
 			Il n'est pas possible de trisecter tous les angles à la règle et au compas.
 	\end{proposition}
 			
 			\begin{proof}
-				Montrons que l'on ne peux pas trisecter l'angle $\frac{\pi}{3}$.
-				Trisecter cet angle permet de construire le point $\cos (\frac{\pi}{9})$, en ayant comme points de base $(\cos (\frac{\pi}{3}),0),(0,0)$ et $(1,0)$.
-				Or, 
-				\[{}
-				\begin{aligned}
-					\cos \left(\frac{\pi}{3}\right) &= \cos \left(3\frac{\pi}{9}\right) \\
-						&= \cos\left(\frac{\pi}{9}\right)\cos\left(2\times\frac{\pi}{9}\right) - \sin\left(\frac{\pi}{9}\right)\sin\left(2\times\frac{\pi}{9}\right) \\
-						&= 4\cos^{3}\left(\frac{\pi}{9}\right) - 3\cos\left(\frac{\pi}{9}\right)
-				\end{aligned}
-				\]
-				Comme le polynôme $3X^{3}-4X-\cos\left(\frac{\pi}{3}\right)$ nécessite une extension cubique (le degré algébrique de la solution n'est pas de la forme $2^{n}$), il n'est pas possible de construire $\cos\left(\frac{\pi}{9}\right)$ à la règle et au compas, donc, de trisecter l'angle.
+				Montrons que l'on ne peux pas trisecter l'angle
 			\end{proof}
 			
 		
@@ -863,7 +848,7 @@
 			Deux définitions, qui semblent proches, coexistentent, mais ont des conséquences différentes. La version forte de l'axiome est celle que nous avons énoncé. La version faible de l'axiome est le sujet de cette sous-partie, en voici l'énoncé :
 			
 			\begin{axiome}[6 - Version faible]
-			Étant donné deux points $p_{1}$ et $p_{2}$, et deux plis $P_{1}$ et $P_{2}$, tel que $p_{1}$ ne soit pas un point de $P_{1}$ et $p_{2}$ ne soit pas un pli de $P_{2}$, alors il existe un pli $P$ qui envoie $p_{1}$ sur un point de $P_{1}$ et $p_{2}$ sur un point de $P_{2}$
+			Étant donné deux points $p_{1}$ et $p_{2}$, et deux plis $P_{1}$ et $P_{2}$, tel que $p_{1}$ ne soit pas un point de $P_{1}$ et $p_{2}$ ne soit pas un point de $P_{2}$, alors il existe un pli $P$ qui envoie $p_{1}$ sur un point de $P_{1}$ et $p_{2}$ sur un point de $P_{2}$
 			\end{axiome}
 			
 			Alors, on comprends que les couples $(p_{1},P_{1})$ et $(p_{2},P_{2})$ pourront servir à définir des paraboles, et c'est en effet le sujet de la proposition suivante : 
@@ -932,7 +917,52 @@
 					\mathbb{Q} = K_0 \subset K_1 \subset \dots \subset K_r
 					\]
 			telle que \( x \in K_r \).
-		\end{theorem}
+		\end{theorem} 
+		
+		\begin{corollaire}
+		     Tout nombre réel constructible est un nombre algébrique dont le degré algébrique est de la forme \( 2^{p}3^{q}, p,q\geq 0 \).
+		     \end{corollaire}   
+		     
+		     \begin{proof}
+		     Soit $x$ un nombre constructible. Par le théorème de Wantzel, il 
+		     existe des extensions au plus cubiques \[ \mathbb{Q} = K_{0} 
+		     \subset K_{1} \subset \dots \subset K_{r} \] telles que
+		     \(x \in K_{r} \). Donc x appartient à une extension de \( 
+		     \mathbb{Q} \) de degré fini. Or on a montré que les éléments d'extensions finies sont algébriques, donc $x$ est algébrique. On sait de plus que 
+		     \[ 
+		     \forall i \in \llbracket 1, r-1 \rrbracket, \;[K_{i}:K_{i+1}] \in \{1,2,3\} 
+		     \]
+		     Donc par la proposition sur 
+		     la relation de Chasles sur les degrés \[
+		     [\mathbb{Q}:K_{r}] 
+		     = 2^{p}3^{q}\mbox{  avec }p+q =r \]
+		     Il reste à déduire le degré de \( 
+		     [\mathbb{Q}(x):\mathbb{Q}] \). Comme \( \mathbb{Q}(x) \subset K_{r} 
+		     \), nous avons toujours par la proposition sur la relation 
+		     de Chasles du degré que \[ [K{r}:\mathbb{Q}(x)]\times 
+		     [\mathbb{Q}(x):\mathbb{Q}] = [K_{r}:\mathbb{Q}] = 2^{p}3^{q}. 
+		     \]
+		     Donc \([\mathbb{Q}(x):\mathbb{Q}] \) divise \(2^{p}3^{q}\) et est donc 
+		     de la forme \(2^{\alpha}3^{\beta}\).
+		     \end{proof} 
+		     
+		\begin{corollaire}
+			 \(\mathscr{C}_{\mathbb{R}} \) est le plus petit sous-corps 
+			 de \(\mathbb{R}\) stable par racine carréee et racine cubique.
+		\end{corollaire}
+		\begin{proof}
+			A faire...
+		\end{proof}
+		
+			\begin{proposition}
+			Si $x\in\mathbb{R}$ est constructible, il est algébrique, et son degré algébrique est de la forme : 
+			\[{}
+				2^{n}\;\;\mbox{ avec }\;n\in\mathbb{N}
+			\]
+			\end{proposition}
+             \begin{proof}
+	             A faire..
+			 \end{proof}
 	
 	\subsection{Exemples célèbres revisités}
 	
@@ -977,10 +1007,6 @@
 		
 		
 		\subsubsection{La duplication du cube}
-
-% ----------------------------------------------------
-	\section{Hyperorigami et nombres hyper-constructibles}
-	
 
 
 
@@ -1073,7 +1099,22 @@ du modèle.
 
       
 
-    
+% ----------------------------------------------------
+		\section{Du \emph{crease pattern} à l'origami : la conception mathématisée}
+		
+			\subsection{Les bases}
+				\subsubsection{La conception d'un modèle}
+					\paragraph{}
+					Pour concevoir un modèle en origami, il n'est pas très pratique de simplement tester aléatoirement, ou à l'intuition, des plis quelconques, jusqu'à ce que le modèle obtenu ressemble à l'objet que l'on voulait produire. Et pourtant, c'est ainsi qu'étaient conçus les modèle avant le XXe sciècle, c'est à dire avant que les mathématiciens ne se penchent sur le problème.
+					\paragraph{Du modèle à la base}
+					Si on se donne un modèle en origami réalisé, par exemple un chien, on peut remarquer que ses principales caractéristiques sont le nombre de "membres" qu'il possède. Pour le chien, on compterait 4 pates et une tête. Si on est capable de se donner un origami ayant le même nombre de membres (avec globalement les même proportions), alors il suffit d'un petit effort stylistique pour transformer cette \emph{base} en le modèle désiré. Tout l'enjeu (mathématique) est donc de concevoir la base! Le reste tient de l'action artistique.
+					\paragraph{Le schéma mathématique de construction}
+					Ainsi, la conception de l'origami se fait toujours en 3 étapes :
+					\begin{enumerate}
+						\item Compter le nombre de membres, et les proportions, qui vont former la base
+						\item Obtenir la base
+						\item Transformer cette base par des plis stylistiques en le modèle final.
+					\end{enumerate}
 
 
 % --------------------- --------- --------------------- 
